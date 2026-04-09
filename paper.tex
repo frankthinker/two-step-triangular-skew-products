@@ -1,0 +1,2335 @@
+\documentclass[11pt,reqno]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{mathrsfs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\allowdisplaybreaks[2]
+\emergencystretch=2em
+
+\hypersetup{
+  hidelinks,
+  pdfauthor={Shun Hu},
+  pdftitle={Exact Denominator Asymptotics, Finite-Jet Rigidity, and Mobius Disjointness for a Class of Two-Step Triangular Skew Products}
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\e}[1]{e^{2\pi i #1}}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\qj}{q_j}
+\newcommand{\qjp}{q_{j+1}}
+\newcommand{\mobius}{\mu}
+
+\title[Exact Denominator Asymptotics and Finite-Jet Rigidity]{Exact Denominator Asymptotics, Finite-Jet Rigidity, and M\"obius Disjointness for a Class of Two-Step Triangular Skew Products}
+\author[Shun Hu]{Shun Hu}
+\address{The Chinese University of Hong Kong, Shenzhen}
+\email{shunhu@link.cuhk.edu.cn}
+\date{}
+\subjclass[2020]{37B05, 11N64, 37A35}
+\keywords{Sarnak conjecture, M\"obius disjointness, rigidity, skew products, Bessel functions}
+
+\begin{document}
+
+\begin{abstract}
+We study the original Ces\`aro form of Sarnak's conjecture for the two-step triangular skew
+product
+\[
+\begin{aligned}
+T_h(x,y,z)
+&=(x+\alpha,\ y+\beta\sin(2\pi x),\ z+h(x,y))
+\end{aligned}
+\]
+on $\T^3$, where $\alpha$ is irrational and $h$ is a real-valued finite-band trigonometric
+polynomial. For every irrational $\alpha$ we obtain an explicit denominator-scale asymptotic
+formula for the cocycle blocks along the continued-fraction denominators $\qj$ of $\alpha$,
+governed by a finite Bessel obstruction vector:
+\[
+\begin{aligned}
+S_{\qj}h(x,y)
+&=
+\qj \sum_n \Gamma_n(h;z_0)\,\e{ny}\exp\!\bigl(i n z_0 \cos \theta_x\bigr)\\
+&\qquad +E_j(x,y).
+\end{aligned}
+\]
+Here $z_0=\pi\beta/\sin(\pi\{\alpha\})$, and the coefficients $\Gamma_n(h;z_0)$ are given by an
+explicit finite Bessel expression. If $\alpha$ is Diophantine, then
+\[
+E_j(x,y)=O(\qj^{-1})
+\]
+uniformly, and on the resonant variety $\Gamma_n(h;z_0)=0$ this yields polynomial-rate rigidity
+and hence the original Ces\`aro M\"obius disjointness by the criterion of
+Kanigowski--Lema\'nczyk--Radziwi\l\l. The same denominator law also produces a finite-dimensional
+obstruction quotient with an explicit beta-uniform kernel. It further yields a sectorial
+rigidity picture for $J_0$-anchored support-two and support-three profiles. For the pure
+vertical family
+\[
+z+A\cos(2\pi n_0 y+\varphi),
+\]
+the obstruction reduces to the single scalar equation $J_0(n_0 z_0)=0$, yielding an explicit
+infinite resonant family. Finally, the normalized Lommel coefficients form a parity-adapted
+central-factorial basis in the squared order. This yields exact bounded-bandwidth
+reconstruction and a Pad\'e reduction of the bounded-bandwidth Pr\"ufer inversion problem.
+Moreover, every nonminimal bounded-bandwidth lift is forced onto an explicit codimension
+filtration of lower-degree boundary strata.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+\subsection{Setup and mechanism}
+
+We study the two-step triangular skew product
+\[
+\begin{aligned}
+T_h(x,y,z)
+&=(x+\alpha,\ y+\beta\sin(2\pi x),\ z+h(x,y))
+\end{aligned}
+\]
+on $\T^3$, where $\alpha$ is irrational and $h$ is a real-valued finite-band trigonometric
+polynomial. The natural denominator blocks are
+\[
+\begin{aligned}
+S_q h(x,y)
+&:=\sum_{k=0}^{q-1} h(x+k\alpha,\ y+S_k\phi(x)),\\
+\phi(x)&:=\beta\sin(2\pi x),
+\end{aligned}
+\]
+so the top cocycle interacts with a nonlinear intermediate layer. The special choice
+\[
+\phi(x)=\beta\sin(2\pi x)
+\]
+turns the denominator-time phase into an exact cosine difference. After a Jacobi--Anger
+expansion, the whole block becomes an explicit finite Bessel expression. This explicit
+denominator law is the basic mechanism of the paper.
+
+Write
+\[
+\begin{aligned}
+h(x,y)
+&=\sum_{\abs{m}\le M,\ \abs{n}\le N}\widehat h(m,n)\,\e{mx+ny},\\
+a&:=\{\alpha\},\qquad
+z_0:=\frac{\pi\beta}{\sin(\pi a)},\qquad
+\theta_x:=2\pi x-\pi a.
+\end{aligned}
+\]
+For each vertical frequency $n$ define
+\[
+\Gamma_n(h;z_0)
+:=
+\sum_{\abs{m}\le M}\widehat h(m,n)(-i)^m e^{i\pi m a} J_m(n z_0).
+\]
+
+\subsection{Results and scope}
+
+The first output is dynamical. For every irrational $\alpha$, \Cref{thm:obstruction} gives the
+exact denominator asymptotic. If $\alpha$ is Diophantine, \Cref{thm:quantitative-obstruction}
+upgrades it to a uniform $O(\qj^{-1})$ remainder bound, and on the resonant variety
+\[
+\Gamma_n(h;z_0)=0
+\]
+\Cref{thm:mobius-resonant} yields the original Ces\`aro M\"obius disjointness.
+
+The second output is geometric. \Cref{thm:obstruction-quotient} identifies a finite-dimensional
+obstruction quotient and an explicit beta-uniform kernel. On this quotient,
+\Cref{thm:shared-profile-finite} gives shared-profile finiteness,
+\Cref{thm:anchor-support-two} closes the $J_0$-anchored support-two sector,
+\Cref{thm:anchor-evenodd-second-order-rigidity,thm:anchor-oddodd-second-order-rigidity}
+exclude the anchored even-odd and odd-odd support-three sectors at second order, and
+\Cref{thm:anchor-eveneven-rigidity} closes the anchored even-even support-three sector at
+fifth order. Outside these anchored sectors, \Cref{thm:generic-finite-resonance} shows that the
+remaining multi-frequency infinite resonance locus is generically thin.
+
+The third output is finite-jet rigidity. \Cref{thm:central-factorial-basis} shows that the
+normalized Lommel coefficient polynomials form a parity-adapted central-factorial basis in the
+squared order. This yields the bounded-bandwidth reconstruction theorem
+\Cref{thm:bounded-bandwidth-reconstruction}. On every bounded even/odd bandwidth window,
+\Cref{prop:pade-reconstruction,prop:boundary-thinness} reduce the normalized Pr\"ufer inversion
+problem to a finite-dimensional amplitude-lifting problem and show that any nonminimal lift is
+forced onto an explicit lower-degree boundary filtration.
+
+In the pure vertical specialization
+\[
+\begin{aligned}
+T_{A,n_0,\varphi}(x,y,z)
+&=(x+\alpha,\ y+\beta\sin(2\pi x),\\
+&\qquad z+A\cos(2\pi n_0 y+\varphi)),
+\end{aligned}
+\]
+\Cref{prop:pure-vertical,thm:flagship} reduce the obstruction to the single scalar
+$J_0(n_0z_0)$, producing an explicit infinite resonant family.
+
+\subsection{Context and organization}
+
+The closest precedents are the one-step skew-product results of de Faveri, Liu--Sarnak, and Wang
+\cite{deFaveri,LiuSarnak,WangAnalytic}, together with the rigidity-to-M\"obius criterion of
+Kanigowski, Lema\'nczyk and Radziwi\l\l \cite{KLR}. We use the KLR route, not the
+complexity route of Huang, Wang and Ye \cite{HWY}. The genuinely model-specific input is the exact
+cosine-difference normal form produced by $\phi(x)=\beta\sin(2\pi x)$. This is also why the
+paper does not claim a comparable theorem for a general intermediate cocycle. The Diophantine
+assumption enters only at the quantitative stage: the exact denominator law is unconditional,
+while the Ces\`aro M\"obius theorem uses Diophantine control of the Dirichlet kernels.
+
+Throughout the paper:
+\begin{enumerate}[label=\arabic*.]
+\item $\alpha$ is irrational;
+\item $\qj$ denotes the continued-fraction denominators of $\alpha$;
+\item in the main M\"obius theorems we assume $\alpha$ is Diophantine;
+\item $h$ is a real-valued finite-band trigonometric polynomial unless explicitly stated
+otherwise;
+\item $\widehat h(0,0)=0$;
+\item $a=\{\alpha\}$, $z_0=\pi\beta/\sin(\pi a)$, and $\theta_x=2\pi x-\pi a$.
+\end{enumerate}
+
+We fix once and for all a compatible translation-invariant metric on $\T$, still denoted by
+$d$, and use the associated product metric on $\T^3$. All sup-norm and rigidity statements are
+understood with respect to this choice.
+
+The paper follows the proof chain of the denominator law. Section~\ref{sec:normal-form}
+derives the denominator-time normal form for the intermediate cocycle. Section~\ref{sec:single-mode}
+computes the single-mode denominator blocks by a Jacobi--Anger expansion. Section~\ref{sec:obstruction}
+passes from the single-mode calculation to the exact denominator law for finite-band cocycles.
+Section~\ref{sec:quantitative} establishes the quantitative $O(\qj^{-1})$ remainder bound under a
+Diophantine condition, derives resonant polynomial-rate rigidity, and verifies the precise
+Kanigowski--Lema\'nczyk--Radziwi\l\l polynomial-rigidity hypothesis. Section~\ref{sec:mobius}
+uses that rigidity input to prove \Cref{thm:mobius-resonant}. Section~\ref{sec:flagship}
+treats the pure vertical specialization. Section~\ref{sec:geometry} returns to the obstruction
+quotient and develops the support-two and support-three rigidity results together with the
+generic finite-resonance theorem. Section~\ref{sec:finite-jet} develops the central-factorial
+basis, bounded-bandwidth reconstruction, and the bounded-bandwidth Pad\'e/Pr\"ufer reduction.
+
+\section{Denominator-time normal form}\label{sec:normal-form}
+
+We begin by rewriting the intermediate cocycle at denominator times. The point of this section
+is that the special sinusoidal form of $\phi$ turns the denominator-time phase into a cosine
+difference, which is the normal form used throughout the remainder of the paper.
+
+\begin{proposition}\label{prop:normal-form}
+For every $k\ge 0$ and $x\in\T$,
+\[
+\begin{aligned}
+S_k\phi(x)
+&=
+\beta\,\Im\!\left(\e{x}\frac{1-\e{k\alpha}}{1-\e{\alpha}}\right)\\
+&=
+\frac{z_0}{2\pi}\bigl(\cos \theta_x-\cos(\theta_x+2\pi\{k\alpha\})\bigr).
+\end{aligned}
+\]
+Consequently, for every integer $n$,
+\[
+\begin{aligned}
+\e{n S_k\phi(x)}
+&=
+\exp\!\bigl(i n z_0\cos \theta_x\bigr)\\
+&\qquad \times \exp\!\bigl(-i n z_0\cos(\theta_x+2\pi\{k\alpha\})\bigr).
+\end{aligned}
+\]
+\end{proposition}
+
+\begin{proof}
+The geometric-series identity gives
+\[
+\sum_{r=0}^{k-1}\e{x+r\alpha}
+=
+\e{x}\frac{1-\e{k\alpha}}{1-\e{\alpha}}.
+\]
+Taking imaginary parts and using $\sin(2\pi u)=\Im(\e{u})$ proves the first identity. Next,
+\[
+1-\e{t}=-2i\,e^{\pi i t}\sin(\pi t),
+\]
+so
+\[
+\frac{1-\e{t}}{1-\e{\alpha}}
+=
+e^{\pi i(t-a)}\frac{\sin(\pi t)}{\sin(\pi a)}.
+\]
+Substituting $t=\{k\alpha\}$ yields
+\[
+S_k\phi(x)
+=
+\beta \frac{\sin(\pi\{k\alpha\})\sin(\theta_x+\pi\{k\alpha\})}{\sin(\pi a)}.
+\]
+Using $2\sin u\sin v=\cos(v-u)-\cos(u+v)$ gives the cosine-difference form. Exponentiating gives
+the last identity.
+\end{proof}
+
+\section{Single-mode denominator blocks}\label{sec:single-mode}
+
+Once the intermediate cocycle is in normal form, the top cocycle can be analyzed one Fourier mode
+at a time. The computation in this section isolates the diagonal term responsible for the main
+denominator contribution and separates it from the off-diagonal remainder.
+
+\begin{proposition}\label{prop:single-mode}
+For the Fourier mode
+\[
+h_{m,n}(x,y)=\e{mx+ny},
+\]
+one has
+\[
+\begin{aligned}
+S_q h_{m,n}(x,y)
+&=
+\e{mx+ny}\exp\!\bigl(i n z_0\cos\theta_x\bigr)\\
+&\qquad \times \sum_{r\in\Z} (-i)^r J_r(nz_0)e^{i r\theta_x} D_q((m+r)\alpha),
+\end{aligned}
+\]
+where
+\[
+D_q(\xi):=\sum_{k=0}^{q-1}\e{k\xi}.
+\]
+In particular, at $q=\qj$,
+\[
+\begin{aligned}
+S_{\qj} h_{m,n}(x,y)
+&=
+\qj (-i)^m e^{i\pi m a} J_m(nz_0)\,\e{ny}\exp\!\bigl(i n z_0\cos\theta_x\bigr)\\
+&\qquad +R_j^{m,n}(x,y),
+\end{aligned}
+\]
+where
+\[
+\begin{aligned}
+R_j^{m,n}(x,y)
+&=
+\e{mx+ny}\exp\!\bigl(i n z_0\cos\theta_x\bigr)\\
+&\qquad \times \sum_{r\ne -m} (-i)^r J_r(nz_0)e^{i r\theta_x} D_{\qj}((m+r)\alpha).
+\end{aligned}
+\]
+\end{proposition}
+
+\begin{proof}
+By definition,
+\[
+\begin{aligned}
+S_q h_{m,n}(x,y)
+&=
+\sum_{k=0}^{q-1}\e{m(x+k\alpha)+n(y+S_k\phi(x))}.
+\end{aligned}
+\]
+Use \Cref{prop:normal-form} to write
+\[
+\e{nS_k\phi(x)}
+=
+\exp\!\bigl(i n z_0\cos\theta_x\bigr)
+\exp\!\bigl(-i n z_0\cos(\theta_x+2\pi k\alpha)\bigr).
+\]
+Apply the Jacobi--Anger expansion
+\[
+\exp(-iu\cos v)=\sum_{r\in\Z}(-i)^r J_r(u)e^{i r v}
+\]
+with $u=nz_0$ and $v=\theta_x+2\pi k\alpha$. Interchanging the finite sum in $k$ with the
+absolutely convergent Bessel series gives
+\[
+\begin{aligned}
+S_q h_{m,n}(x,y)
+&=
+\e{mx+ny}\exp\!\bigl(i n z_0\cos\theta_x\bigr)\\
+&\qquad \times \sum_{r\in\Z}(-i)^r J_r(nz_0)e^{i r\theta_x} D_q((m+r)\alpha),
+\end{aligned}
+\]
+which is the claimed factorization formula. At $q=\qj$ the unique diagonal index is $r=-m$.
+Since $D_{\qj}(0)=\qj$ and $J_{-m}(u)=(-1)^m J_m(u)$, the diagonal contribution is
+\[
+\begin{aligned}
+\qj (-i)^{-m}(-1)^m J_m(nz_0)\,\e{mx+ny} e^{-im\theta_x}
+\,\exp\!\bigl(i n z_0\cos\theta_x\bigr).
+\end{aligned}
+\]
+Finally,
+\[
+\e{mx}e^{-im\theta_x}
+=
+e^{2\pi i m x}e^{-im(2\pi x-\pi a)}
+=
+e^{i\pi m a},
+\]
+so the diagonal term becomes the main term stated in the proposition.
+\end{proof}
+
+\section{Exact denominator law}\label{sec:obstruction}
+
+We now pass from the single-mode factorization to the full finite-band cocycle. The key point is
+that, at denominator times, each Fourier mode contributes one diagonal term and an explicit
+off-diagonal remainder. Summing the diagonal terms produces the obstruction vector.
+
+\begin{theorem}\label{thm:obstruction}
+Let
+\[
+\Gamma_n(h;z_0)
+:=
+\sum_{\abs{m}\le M}\widehat h(m,n)(-i)^m e^{i\pi m a} J_m(n z_0).
+\]
+Then
+\[
+\begin{aligned}
+S_{\qj} h(x,y)
+&=
+\qj \sum_{\abs{n}\le N}\Gamma_n(h;z_0)\,\e{ny}\exp\!\bigl(i n z_0\cos\theta_x\bigr)\\
+&\qquad +E_j(x,y),
+\end{aligned}
+\]
+where
+\[
+E_j(x,y)
+:=
+\sum_{\abs{m}\le M,\ \abs{n}\le N}\widehat h(m,n) R_j^{m,n}(x,y).
+\]
+\end{theorem}
+
+\begin{proof}
+Expand $h$ into its finitely many Fourier modes and apply \Cref{prop:single-mode} to each mode.
+For each pair $(m,n)$, the diagonal contribution arises from the unique index $r=-m$ and
+therefore contributes
+\[
+\begin{aligned}
+\qj \widehat h(m,n)(-i)^m e^{i\pi m a} J_m(nz_0)\,\e{ny}
+\,\exp\!\bigl(i n z_0\cos\theta_x\bigr).
+\end{aligned}
+\]
+Summing these diagonal terms over the finitely many Fourier modes of $h$ yields the
+principal part
+\[
+\begin{aligned}
+\qj \sum_{\abs{n}\le N}\Gamma_n(h;z_0)\,\e{ny}\exp\!\bigl(i n z_0\cos\theta_x\bigr).
+\end{aligned}
+\]
+All terms with $r\ne -m$ are, by definition, absorbed into $E_j$.
+\end{proof}
+
+\begin{remark}\label{rem:obstruction-geometry}
+The statement of \Cref{thm:obstruction} requires only that $\alpha$ be irrational. No
+Diophantine input is used up to this point.
+\end{remark}
+
+\begin{remark}\label{rem:obstruction-geometry-2}
+Two basic consequences of \Cref{thm:obstruction} will be used repeatedly.
+\begin{enumerate}[label=\arabic*.]
+\item The zero vertical frequency is the mean:
+\[
+\Gamma_0(h;z_0)=\widehat h(0,0).
+\]
+Hence the standing assumption $\widehat h(0,0)=0$ is the vanishing of the
+$n=0$ obstruction.
+\item If $h$ is real-valued, then
+\[
+\Gamma_{-n}(h;z_0)=\overline{\Gamma_n(h;z_0)}
+\]
+for every $n\in\Z$. Thus the obstruction vector is determined by its positive vertical
+frequencies.
+\end{enumerate}
+\end{remark}
+
+\section{Quantitative remainder bounds and resonant rigidity}\label{sec:quantitative}
+
+For the rest of Sections~\ref{sec:quantitative}--\ref{sec:flagship}, assume that $\alpha$ is
+Diophantine:
+\[
+\norm{s\alpha}\ge c_\alpha \abs{s}^{-\tau}
+\]
+for all nonzero integers $s$.
+
+The goal of this section is to convert the exact obstruction formula of \Cref{thm:obstruction}
+into a quantitative denominator-scale rigidity statement. The argument has two ingredients. The
+first is a Diophantine bound for the Dirichlet kernels $D_{\qj}(s\alpha)$ on the range
+$\abs{s}<\qjp$. The second is the rapid decay of Bessel coefficients in the order, which
+controls the complementary tail. Their combination yields an $O(\qj^{-1})$ remainder estimate
+for the full finite-band cocycle and therefore polynomial-rate rigidity on the resonant variety.
+
+\begin{lemma}\label{lem:dirichlet}
+For every nonzero integer $s$ and every $j$:
+\begin{enumerate}[label=\arabic*.]
+\item if $0<\abs{s}<\qjp$, then
+\[
+\abs{D_{\qj}(s\alpha)} \le C_\alpha \abs{s}^{\tau+1}\qjp^{-1};
+\]
+\item for arbitrary $s$,
+\[
+\abs{D_{\qj}(s\alpha)} \le \qj.
+\]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Use
+\[
+D_{\qj}(s\alpha)=\frac{\sin(\pi \qj s\alpha)}{\sin(\pi s\alpha)}.
+\]
+If $0<\abs{s}<\qjp$, then
+\[
+\norm{\qj s\alpha}\le \abs{s}\norm{\qj\alpha}\le \abs{s}\qjp^{-1},
+\]
+so
+\[
+\abs{\sin(\pi \qj s\alpha)}\le \pi\abs{s}\qjp^{-1}.
+\]
+The Diophantine condition gives
+\[
+\abs{\sin(\pi s\alpha)}\ge c'_\alpha \norm{s\alpha}\ge c''_\alpha \abs{s}^{-\tau}.
+\]
+Combining the estimates proves the first bound. The second follows immediately from the
+definition of $D_{\qj}$ as a sum of $\qj$ unimodular terms.
+\end{proof}
+
+\begin{lemma}\label{lem:bessel-tail}
+Fix $u\in\R$. Then for every integer $r$,
+\[
+\abs{J_r(u)}\le C_u \frac{(\abs{u}/2)^{\abs{r}}}{\abs{r}!}.
+\]
+Consequently, for every $A>0$ there exists $C_{u,A}$ such that
+\[
+\sum_{\abs{r}\ge L} \abs{J_r(u)} \le C_{u,A} L^{-A}
+\]
+for all integers $L\ge 1$.
+\end{lemma}
+
+\begin{proof}
+For $r\ge 0$, the series definition of $J_r$ gives
+\[
+J_r(u)=\sum_{\ell\ge 0} \frac{(-1)^\ell (u/2)^{2\ell+r}}{\ell!(\ell+r)!},
+\]
+hence
+\[
+\abs{J_r(u)}
+\le
+\left(\frac{\abs{u}}{2}\right)^r
+\sum_{\ell\ge 0}\frac{(\abs{u}/2)^{2\ell}}{(\ell!)^2}
+\le
+C_u \frac{(\abs{u}/2)^r}{r!}.
+\]
+For negative indices use $J_{-r}(u)=(-1)^r J_r(u)$. The tail bound follows because factorial
+decay dominates every power.
+\end{proof}
+
+\begin{proposition}\label{prop:remainder-one-mode}
+For each fixed pair $(m,n)$,
+\[
+\sup_{x,y}\abs{R_j^{m,n}(x,y)}
+\le C_{m,n,\alpha,\beta}\,\qj^{-1}.
+\]
+\end{proposition}
+
+\begin{proof}
+Since the outer phase factors have unit modulus,
+\[
+\sup_{x,y}\abs{R_j^{m,n}(x,y)}
+\le
+\sum_{r\ne -m}\abs{J_r(nz_0)}\,\abs{D_{\qj}((m+r)\alpha)}.
+\]
+Set $s=m+r$ and split into $\abs{s}<\qjp$ and $\abs{s}\ge \qjp$. For the first range,
+\Cref{lem:dirichlet} gives
+\[
+\begin{aligned}
+\sum_{0<\abs{s}<\qjp}\abs{J_{s-m}(nz_0)}\,\abs{D_{\qj}(s\alpha)}
+&\le
+C_\alpha \qjp^{-1}\sum_{s\ne 0}\abs{s}^{\tau+1}\abs{J_{s-m}(nz_0)},
+\end{aligned}
+\]
+and the series on the right converges by \Cref{lem:bessel-tail}. Thus the contribution of this
+range is at most $C'_{m,n,\alpha,\beta}\qjp^{-1}$. For the tail use
+\[
+\qj \sum_{\abs{s}\ge \qjp}\abs{J_{s-m}(nz_0)},
+\]
+and apply \Cref{lem:bessel-tail} with $A=2$ to obtain
+\[
+\qj \sum_{\abs{s}\ge \qjp}\abs{J_{s-m}(nz_0)}
+\le
+C''_{m,n,\beta}\qj \qjp^{-2}
+\le
+C''_{m,n,\beta}\qj^{-1}.
+\]
+Combining the two ranges proves the claim.
+\end{proof}
+
+\begin{theorem}\label{thm:quantitative-obstruction}
+There exists $C(h,\alpha,\beta)$ such that
+\[
+\sup_{x,y}\abs{E_j(x,y)}
+\le C(h,\alpha,\beta)\,\qj^{-1}
+\]
+for all $j$.
+\end{theorem}
+
+\begin{proof}
+The sum defining $E_j$ contains only finitely many pairs $(m,n)$, so \Cref{thm:obstruction}
+and \Cref{prop:remainder-one-mode} imply
+\[
+\begin{aligned}
+\sup_{x,y}\abs{E_j(x,y)}
+&\le
+\sum_{\abs{m}\le M,\ \abs{n}\le N}
+\abs{\widehat h(m,n)}\,\sup_{x,y}\abs{R_j^{m,n}(x,y)}\\
+&\le
+C(h,\alpha,\beta)\,\qj^{-1},
+\end{aligned}
+\]
+where the final constant is obtained by summing the finitely many modewise constants.
+\end{proof}
+
+\begin{corollary}\label{cor:resonant-cocycle}
+If
+\[
+\Gamma_n(h;z_0)=0
+\]
+for every active vertical frequency $n$, then
+\[
+\sup_{x,y}\abs{S_{\qj} h(x,y)} \le C(h,\alpha,\beta)\,\qj^{-1}.
+\]
+\end{corollary}
+
+\begin{proof}
+Under the resonant hypothesis, the principal part in \Cref{thm:obstruction} vanishes
+identically, so \Cref{thm:quantitative-obstruction} gives the estimate.
+\end{proof}
+
+\begin{corollary}\label{cor:uniform-rigidity}
+Under the assumptions of \Cref{cor:resonant-cocycle},
+\[
+\sup_{(x,y,z)\in \T^3} d(T_h^{\qj}(x,y,z),(x,y,z))
+\le C \qj^{-1}.
+\]
+\end{corollary}
+
+\begin{proof}
+The $x$-coordinate displacement is $\norm{\qj\alpha}\le \qj^{-1}$. For the $y$-coordinate,
+\Cref{prop:normal-form} gives
+\[
+\sup_x \abs{S_{\qj}\phi(x)}
+\le
+\abs{\beta}\,\frac{\abs{1-\e{\qj\alpha}}}{\abs{1-\e{\alpha}}}
+\le
+C(\alpha,\beta)\,\norm{\qj\alpha}
+\le
+C(\alpha,\beta)\,\qj^{-1},
+\]
+while the $z$-coordinate displacement is controlled by \Cref{cor:resonant-cocycle}. Since the
+metric on $\T^3$ is the product metric, the three coordinate estimates combine to give the
+claimed bound.
+\end{proof}
+
+\begin{corollary}\label{cor:klr-condition}
+Let $F$ be a trigonometric polynomial on $\T^3$. Then there exists $C_F$ such that
+\[
+\norm{F\circ T_h^{\qj}-F}_\infty
+\le C_F \qj^{-1}.
+\]
+Moreover, for every $\delta$ with $0<\delta<2/3$,
+\[
+\sum_{\abs{r}\le \qj^\delta}
+\norm{F\circ T_h^{r\qj}-F}_\infty^2 \to 0.
+\]
+The same conclusion holds in $L^2(\nu)$ for every $T_h$-invariant Borel probability measure
+$\nu$.
+\end{corollary}
+
+\begin{proof}
+Trigonometric polynomials are Lipschitz. By \Cref{cor:uniform-rigidity},
+\[
+\norm{F\circ T_h^{\qj}-F}_\infty \le C_F \qj^{-1}.
+\]
+For $\abs{r}\le \qj^\delta$, telescoping gives
+\[
+\norm{F\circ T_h^{r\qj}-F}_\infty
+\le C_F \abs{r}\qj^{-1}\le C_F \qj^{\delta-1}.
+\]
+Hence
+\[
+\begin{aligned}
+\sum_{\abs{r}\le \qj^\delta}\norm{F\circ T_h^{r\qj}-F}_\infty^2
+&\le
+(2\qj^\delta+1) C_F^2 \qj^{2\delta-2}\\
+&\le
+C_F' \qj^{3\delta-2},
+\end{aligned}
+\]
+which tends to $0$ when $\delta<2/3$. The $L^2(\nu)$ statement follows from the sup norm
+bound.
+\end{proof}
+
+\section{M\"obius disjointness on the resonant variety}\label{sec:mobius}
+
+At this stage the dynamical input is complete: on the resonant variety, the cocycle blocks are
+quantitatively rigid along the denominator sequence. This is the hypothesis needed to
+invoke the Kanigowski--Lema\'nczyk--Radziwi\l\l criterion.
+
+\begin{theorem}\label{thm:mobius-resonant}
+Assume that $\alpha$ is Diophantine and that
+\[
+\Gamma_n(h;z_0)=0
+\]
+for every active vertical frequency $n$. Then the system $T_h$ satisfies the original
+Ces\`aro Sarnak conjecture.
+\end{theorem}
+
+\begin{proof}
+The resonant hypothesis implies \Cref{cor:resonant-cocycle}, hence also
+\Cref{cor:uniform-rigidity,cor:klr-condition}. Fix a $T_h$-invariant Borel probability measure
+$\nu$, and let $\mathcal F_{\mathrm{trig}}$ denote the trigonometric polynomials on $\T^3$.
+Then for every $F\in \mathcal F_{\mathrm{trig}}$ and every $\delta\in(0,2/3)$ the denominator
+sequence $\qj$ satisfies
+\[
+\sum_{\abs{r}\le \qj^\delta}
+\norm{F\circ T_h^{r\qj}-F}_{L^2(\nu)}^2 \to 0.
+\]
+Since $\mathcal F_{\mathrm{trig}}$ is linearly dense in $C(\T^3)$, this is exactly the
+PR-rigidity condition of \cite[Definition~1.1]{KLR} for the measure-theoretic system
+$(\T^3,\mathcal B,\nu,T_h)$. As $\nu$ was arbitrary, the topological system $(\T^3,T_h)$ is
+good in the sense of \cite[Definition~1.1]{KLR}. Therefore \cite[Theorem~1.1]{KLR} applies and
+yields the M\"obius disjointness of $T_h$, i.e. the original Ces\`aro formulation.
+\end{proof}
+
+\section{Pure vertical specialization}\label{sec:flagship}
+
+We conclude by specializing the obstruction formula to a one-frequency family for which the finite
+obstruction vector collapses to a single Bessel factor. Because $J_0$ has infinitely many positive
+zeros, this produces an infinite explicit resonant family.
+
+For the pure vertical family
+\[
+h(x,y)=A\cos(2\pi n_0 y+\varphi),
+\]
+the obstruction vector can be computed explicitly.
+
+\begin{proposition}\label{prop:pure-vertical}
+Let
+\[
+h(x,y)=A\cos(2\pi n_0 y+\varphi).
+\]
+Then
+\[
+\Gamma_{n_0}(h;z_0)=\frac{A}{2}e^{i\varphi}J_0(n_0 z_0),
+\qquad
+\Gamma_{-n_0}(h;z_0)=\frac{A}{2}e^{-i\varphi}J_0(n_0 z_0),
+\]
+and
+\[
+\Gamma_n(h;z_0)=0
+\]
+for every $n\notin\{\pm n_0\}$.
+\end{proposition}
+
+\begin{proof}
+Write
+\[
+h(x,y)
+=
+\frac{A e^{i\varphi}}{2}\,\e{n_0 y}
++
+\frac{A e^{-i\varphi}}{2}\,\e{-n_0 y}.
+\]
+Thus the only nonzero Fourier coefficients of $h$ occur at $(m,n)=(0,n_0)$ and
+$(m,n)=(0,-n_0)$. By the definition of $\Gamma_n(h;z_0)$, only the term $m=0$ contributes, and
+since $J_0$ is even we obtain
+\[
+\Gamma_{n_0}(h;z_0)=\frac{A}{2}e^{i\varphi}J_0(n_0 z_0),
+\qquad
+\Gamma_{-n_0}(h;z_0)=\frac{A}{2}e^{-i\varphi}J_0(n_0 z_0).
+\]
+All remaining vertical frequencies vanish identically.
+\end{proof}
+
+\begin{theorem}\label{thm:flagship}
+Let
+\[
+\begin{aligned}
+T_{A,n_0,\varphi}(x,y,z)
+&=(x+\alpha,\ y+\beta\sin(2\pi x),\\
+&\qquad z+A\cos(2\pi n_0 y+\varphi)).
+\end{aligned}
+\]
+If $\alpha$ is Diophantine and
+\[
+J_0(n_0 z_0)=0,
+\]
+then $T_{A,n_0,\varphi}$ satisfies the original Ces\`aro form of Sarnak's conjecture.
+\end{theorem}
+
+\begin{proof}
+By \Cref{prop:pure-vertical}, the obstruction vector vanishes if and only if
+$J_0(n_0 z_0)=0$. The conclusion now follows from \Cref{thm:mobius-resonant}.
+\end{proof}
+
+\begin{corollary}\label{cor:infinite-resonant-family}
+Fix a Diophantine $\alpha$, an integer $n_0\ge 1$, and parameters $A\neq 0$ and
+$\varphi\in\T$. Then there exist infinitely many real values of $\beta$ for which
+$T_{A,n_0,\varphi}$ satisfies the original Ces\`aro form of Sarnak's conjecture.
+\end{corollary}
+
+\begin{proof}
+Let $(\xi_m)_{m\ge 1}$ be the positive zeros of $J_0$. Since $J_0$ has infinitely many positive
+zeros, this sequence is infinite. For each $m$, define
+\[
+\beta_m:=\frac{\xi_m\sin(\pi\{\alpha\})}{\pi n_0}.
+\]
+Then
+\[
+n_0 z_0
+=
+n_0\frac{\pi\beta_m}{\sin(\pi\{\alpha\})}
+=
+\xi_m,
+\]
+so $J_0(n_0 z_0)=J_0(\xi_m)=0$. The conclusion follows from \Cref{thm:flagship}.
+\end{proof}
+
+\begin{corollary}\label{cor:basic-model}
+Consider
+\[
+\begin{aligned}
+T(x,y,z)
+&=(x+\alpha,\ y+\beta\sin(2\pi x),\ z+\cos(2\pi y)).
+\end{aligned}
+\]
+If $\alpha$ is Diophantine and
+\[
+J_0(z_0)=0,
+\]
+then $T$ satisfies the original Ces\`aro form of Sarnak's conjecture.
+\end{corollary}
+
+\begin{proof}
+\Cref{thm:flagship} applied with $A=1$, $n_0=1$, and $\varphi=0$ gives the claim.
+\end{proof}
+
+\section{Obstruction geometry}\label{sec:geometry}
+
+The exact denominator law of \Cref{thm:obstruction} has a second output beyond the Diophantine
+rigidity route: it compresses the finite-band resonance problem to an explicit finite-dimensional
+Bessel quotient. The section first records the one-frequency asymptotic input and the resulting
+compatibility hierarchy, and then applies them to the quotient. The proofs split into three
+types: shared-profile finiteness from compatibility plus formal phase-purity, anchored rigidity
+from exact low-order elimination, and generic thinness from placing the compatibility equations on
+quotient strata.
+
+\subsection*{The obstruction quotient and its kernel}
+
+Fix bandwidths $(M,N)$. Let $\mathcal H_{M,N}$ be the real vector space of real-valued
+trigonometric polynomials
+\[
+h(x,y)=u_0(x)+\sum_{n=1}^N \bigl(G_n(x)\e{ny}+\overline{G_n(x)\e{ny}}\bigr),
+\]
+where $u_0$ is a real trigonometric polynomial of degree at most $M$ and
+\[
+G_n(x)=\sum_{\abs{m}\le M} g_{m,n}\e{mx}.
+\]
+Define
+\[
+\mathcal T_{M,N}
+:=
+\R
+\oplus
+\bigoplus_{n=1}^N
+\operatorname{span}_{\R}
+\{J_0(n\cdot),\dots,J_M(n\cdot),\, iJ_0(n\cdot),\dots,iJ_M(n\cdot)\}.
+\]
+The exact obstruction law defines the real-linear map
+\[
+\mathcal O_{M,N}:\mathcal H_{M,N}\to \mathcal T_{M,N},
+\qquad
+h\mapsto \bigl(\Gamma_0(h;\cdot),\Gamma_1(h;\cdot),\dots,\Gamma_N(h;\cdot)\bigr).
+\]
+
+\begin{theorem}\label{thm:obstruction-quotient}
+The map $\mathcal O_{M,N}$ is surjective. Its kernel is the explicit subspace $\mathcal K_{M,N}$
+defined by:
+\begin{enumerate}[label=\emph{(\roman*)}]
+\item the zero-frequency part $u_0$ has zero mean;
+\item for each $1\le n\le N$, the coefficients
+\[
+d_{m,n}:=g_{m,n}(-i)^m e^{i\pi m a}
+\]
+satisfy
+\[
+d_{0,n}=0,
+\qquad
+d_{-m,n}=-(-1)^m d_{m,n}\quad (1\le m\le M).
+\]
+\end{enumerate}
+Moreover,
+\[
+\dim_{\R}\mathcal K_{M,N}=2M(N+1),
+\qquad
+\mathcal H_{M,N}/\mathcal K_{M,N}\cong \mathcal T_{M,N}.
+\]
+\end{theorem}
+
+\begin{proof}
+By \Cref{thm:obstruction,rem:obstruction-geometry-2}, the obstruction splits by vertical
+frequency. For $n\ge 1$ one has
+\[
+\Gamma_n(h;z_0)=\sum_{\abs{m}\le M} d_{m,n} J_m(nz_0).
+\]
+Using $J_{-m}=(-1)^m J_m$, this vanishes identically if and only if
+\[
+d_{0,n}=0,
+\qquad
+d_{-m,n}=-(-1)^m d_{m,n}\quad (1\le m\le M).
+\]
+For $n=0$, \Cref{rem:obstruction-geometry-2} gives
+\[
+\Gamma_0(h;z_0)=\widehat u_0(0),
+\]
+so the zero-frequency obstruction vanishes exactly when $u_0$ has zero mean. This proves the
+kernel description.
+
+For the dimension count, the mean-zero $u_0$ sector contributes $2M$ real parameters, and each
+positive frequency contributes another $2M$ real parameters, so
+\[
+\dim_{\R}\mathcal K_{M,N}=2M+N\cdot 2M=2M(N+1).
+\]
+To prove surjectivity, fix $1\le n\le N$ and let
+\[
+\Psi_n(t)=\sum_{m=0}^M (a_m+ib_m)J_m(nt)
+\]
+be an arbitrary element of the $n$th real summand of $\mathcal T_{M,N}$. Define
+\[
+d_{m,n}:=a_m+ib_m \quad (0\le m\le M),
+\qquad
+d_{-m,n}:=0 \quad (1\le m\le M),
+\]
+and then set
+\[
+g_{m,n}:=d_{m,n} i^m e^{-i\pi m a}
+\qquad (\abs{m}\le M).
+\]
+Let
+\[
+G_n(x):=\sum_{\abs{m}\le M} g_{m,n}\e{mx},
+\qquad
+h_n(x,y):=G_n(x)\e{ny}+\overline{G_n(x)\e{ny}}.
+\]
+Then $h_n\in\mathcal H_{M,N}$ is real-valued by construction. The reality constraint only ties
+the $-n$ block to the complex conjugate of the $n$ block; it imposes no relation among the
+coefficients $g_{m,n}$ within the positive $n$ block itself. Hence
+\[
+\Gamma_n(h_n;t)=\sum_{\abs{m}\le M} d_{m,n}J_m(nt)=\Psi_n(t).
+\]
+So every element of the $n$th summand is realized by a real-valued cocycle. The zero-frequency
+summand $\R$ is realized by choosing the mean of $u_0$ arbitrarily. Therefore
+$\mathcal O_{M,N}$ is surjective, and the quotient description follows.
+\end{proof}
+
+\subsection*{One-frequency asymptotics and compatibility}
+
+The quotient geometry rests on two elementary asymptotic inputs: a one-frequency dichotomy, and
+the resulting compatibility relations for any hypothetical common resonant sequence.
+
+\begin{proposition}\label{prop:one-frequency-geometry}
+Let
+\[
+\Gamma(t)=P(t^{-1})J_0(t)+Q(t^{-1})J_1(t),
+\qquad
+P,Q\in\C[u],
+\]
+be nontrivial. Write
+\[
+r:=\min\{\operatorname{ord}_0 P,\operatorname{ord}_0 Q\},
+\quad
+P(u)=u^r\widetilde P(u),
+\quad
+Q(u)=u^r\widetilde Q(u),
+\]
+and set
+\[
+\alpha:=\widetilde P(0),\qquad \beta:=\widetilde Q(0).
+\]
+Then:
+\begin{enumerate}[label=\emph{(\roman*)}]
+\item if
+\[
+\Im(\overline\alpha\beta)\neq 0,
+\]
+then $\Gamma$ has only finitely many real zeros;
+\item if
+\[
+\Im(\overline\alpha\beta)=0,
+\]
+then, after factoring out a common complex phase, the positive zeros of $\Gamma$ admit an
+asymptotic expansion
+\[
+t_k
+=
+k\pi+\delta+\sum_{r=1}^L \lambda_r(k\pi)^{-r}+O(k^{-L-1})
+\]
+to every finite order $L$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Using the standard Hankel expansions of $J_0$ and $J_1$
+\cite[\S10.17,\S10.20]{DLMF}, one has
+\[
+\Gamma(t)
+=
+\sqrt{\frac{2}{\pi}}\,t^{-r-\frac12}
+\bigl(\alpha\cos\xi+\beta\sin\xi+O(t^{-1})\bigr),
+\qquad
+\xi:=t-\frac{\pi}{4}.
+\]
+If $\Im(\overline\alpha\beta)\neq 0$, then the complex oscillatory profile
+$\alpha\cos\xi+\beta\sin\xi$ never vanishes on $\R$, hence has a positive lower bound on the
+circle. Therefore $\abs{\Gamma(t)}\gg t^{-r-1/2}$ for large $t$, proving~\emph{(i)}.
+
+If $\Im(\overline\alpha\beta)=0$, then $\alpha$ and $\beta$ are real-linearly dependent in
+$\C$. Factoring out a common complex phase reduces the leading oscillatory profile to a real
+combination $A\cos\xi+B\sin\xi$. The full Hankel series then gives a formal zero equation with
+nonvanishing derivative at the leading root. The coefficients of the zero-shift series are then
+obtained recursively by coefficient matching, equivalently by applying the implicit function
+theorem to the successive truncated equations; compare the standard asymptotic construction of
+large Bessel zeros in \cite[\S10.21]{DLMF}. This yields the expansion in~\emph{(ii)}.
+\end{proof}
+
+\begin{proposition}\label{prop:compatibility-hierarchy-paper}
+Let $\mathcal N$ be a set of active positive frequencies, and for each $n\in\mathcal N$ assume
+that $\Gamma_n$ is in the oscillatory-real branch of \Cref{prop:one-frequency-geometry}, with
+positive zeros
+\[
+t_{n,k}
+=
+k\pi+\delta_n+\sum_{r=1}^L \lambda_{n,r}(k\pi)^{-r}+O(k^{-L-1}).
+\]
+If there exists an unbounded common real resonant sequence, then for every pair of distinct
+active frequencies $m,n\in\mathcal N$ one has
+\[
+n\delta_m-m\delta_n\in\pi\Z
+\]
+and
+\[
+m^{r+1}\lambda_{n,r}=n^{r+1}\lambda_{m,r}
+\qquad (1\le r\le L).
+\]
+\end{proposition}
+
+\begin{proof}
+Let $z_j\to\infty$ be the common base parameters, so that $nz_j$ and $mz_j$ lie on the
+respective zero sequences. Thus
+\[
+n z_j
+=
+k_{n,j}\pi+\delta_n+\sum_{r=1}^L \lambda_{n,r}(k_{n,j}\pi)^{-r}+O(z_j^{-L-1}),
+\]
+\[
+m z_j
+=
+k_{m,j}\pi+\delta_m+\sum_{r=1}^L \lambda_{m,r}(k_{m,j}\pi)^{-r}+O(z_j^{-L-1}).
+\]
+Multiply the first identity by $m$ and the second by $n$, then subtract. Since
+\[
+k_{n,j}=\frac{n}{\pi}z_j+O(1),
+\qquad
+k_{m,j}=\frac{m}{\pi}z_j+O(1),
+\]
+comparison of the constant term gives
+\[
+n\delta_m-m\delta_n\in\pi\Z.
+\]
+Once this is fixed, comparing the successive powers of $z_j^{-1}$ yields the higher-order
+relations inductively.
+\end{proof}
+
+\begin{proposition}\label{prop:formal-phase-purity-paper}
+Let
+\[
+F_b(t)=\sum_{m\in S} c_m J_m(t)
+\]
+be a nontrivial reduced real Bessel profile in the oscillatory-real branch, and let
+\[
+\mathcal G_b(u):=\sum_{m\in S} c_m (-i)^m H_m(u)
+\]
+be its formal Hankel amplitude. If all higher zero-shift coefficients of $F_b$ vanish, then
+there exists $\phi\in\R$ such that
+\[
+e^{-i\phi}\mathcal G_b(u)\in\R[[u]].
+\]
+\end{proposition}
+
+\begin{proof}
+Choose the leading phase $\phi$ so that
+\[
+e^{-i\phi}\mathcal G_b(u)=\mathcal A(u)-i\mathcal B(u),
+\]
+with $\mathcal A(0)>0$ and $\mathcal B(0)=0$. The formal zero equation near the positive
+oscillatory roots is
+\[
+0=-\mathcal A(u)\sin s+\mathcal B(u)\cos s,
+\]
+where $s=s(u)\in u\R[[u]]$ is the formal zero-shift series. If all higher zero-shift
+coefficients vanish, then $s(u)\equiv 0$, so the equation reduces to $\mathcal B(u)\equiv 0$.
+Therefore $e^{-i\phi}\mathcal G_b(u)=\mathcal A(u)$ is real as a formal series.
+\end{proof}
+
+\subsection*{Shared-profile multi-frequency finiteness}
+
+We next isolate a large class in which multi-frequency infinite resonance is impossible. This is
+the first genuinely global finiteness statement beyond the one-frequency sector.
+
+\begin{theorem}\label{thm:shared-profile-finite}
+Let
+\[
+F_b(t)=\sum_{m\in S} c_m J_m(t)
+\]
+be a nontrivial reduced real Bessel profile with finite support
+$S\subset\Z_{\ge 0}$. Assume that at least two distinct positive active vertical frequencies
+carry this same reduced profile, up to nonzero real scalar multiples. Then the common real
+resonant parameter set is finite.
+\end{theorem}
+
+\begin{proof}
+Assume for contradiction that the common real resonant parameter set is infinite. Since the
+active frequencies carry the same reduced profile, all of them have the same one-frequency
+asymptotic coefficients $\delta,\lambda_1,\lambda_2,\dots$. Applying
+\Cref{prop:compatibility-hierarchy-paper} to two distinct active frequencies shows that every
+higher coefficient must vanish:
+\[
+\lambda_r=0
+\qquad (r\ge 1).
+\]
+By \Cref{prop:formal-phase-purity-paper}, there exists $\phi\in\R$ such that
+\[
+\mathcal G_b(u):=\sum_{m\in S} c_m (-i)^m H_m(u)
+\]
+has the property that
+\[
+e^{-i\phi}\mathcal G_b(u)\in \R[[u]].
+\]
+
+Write
+\[
+H_m(u)=E_m(u)+i\,O_m(u),
+\]
+where $E_m$ is even and $O_m$ is odd in $u$. The imaginary part of
+$e^{-i\phi}\mathcal G_b(u)$ therefore yields
+\[
+\sum_{m\in S} c_m \sin(\phi+m\pi/2)\,E_m(u)=0,
+\]
+\[
+\sum_{m\in S} c_m \cos(\phi+m\pi/2)\,O_m(u)=0.
+\]
+
+More concretely, the coefficient of $u^{2r}$ in $E_m$ has the form
+\[
+\kappa_r m^{4r}+\text{(lower powers of $m^2$)},
+\qquad
+\kappa_r\neq 0,
+\]
+while the coefficient of $u^{2r+1}$ in $O_m$ has the form
+\[
+\kappa_r' m^{4r+2}+\text{(lower powers of $m^2$)},
+\qquad
+\kappa_r'\neq 0.
+\]
+Choose distinct indices $m_1,\dots,m_s\in S$. Evaluating the coefficients of
+$u^0,u^2,\dots,u^{2s-2}$ in a linear relation among the $E_{m_j}$ gives a square matrix whose
+leading part is the Vandermonde matrix
+\[
+\Bigl((m_j^2)^r\Bigr)_{
+\substack{0\le r\le s-1\\ 1\le j\le s}},
+\]
+which is invertible because the numbers $m_j^2$ are distinct. Hence
+$\{E_m\}_{m\in S}$ is linearly independent. The same argument, now using the coefficients of
+$u^1,u^3,\dots,u^{2s-1}$, shows that $\{O_m\}_{m\in S}$ is linearly independent as well.
+
+Therefore every active $m\in S$ satisfies
+\[
+c_m\sin(\phi+m\pi/2)=0,
+\qquad
+c_m\cos(\phi+m\pi/2)=0,
+\]
+so $c_m=0$ for every $m\in S$. This contradicts the nontriviality of $F_b$.
+\end{proof}
+
+\subsection*{$J_0$-anchored support-two rigidity}
+
+The shared-profile theorem closes the synchronized multi-frequency sector. We now record a
+different geometric phenomenon: once one active frequency is the pure vertical anchor $J_0$, the
+entire support-two non-shared sector is already closed.
+
+\begin{theorem}\label{thm:anchor-support-two}
+Assume that one active positive vertical frequency carries the pure vertical anchor profile
+$J_0$. Let $k\ge 1$, and let a second active positive vertical frequency carry a nontrivial
+profile supported on $\{0,k\}$:
+\[
+F(t)=b_0J_0(t)+b_kJ_k(t),
+\qquad
+(b_0,b_k)\neq (0,0).
+\]
+If the two active frequencies belong to a common infinite-resonance configuration, then
+\[
+b_k=0.
+\]
+Equivalently, the second profile must again be a scalar multiple of $J_0$.
+\end{theorem}
+
+\begin{proof}
+Write the two active frequencies as $n$ and $p$, and let
+\[
+q:=\frac{p^2}{n^2}>0.
+\]
+If $b_0=0$, then the second profile is a pure Bessel mode $J_k$. For even $k$ the first
+zero-shift coefficient is negative, while $\lambda_1(J_0)=1/8>0$, so normalized equality at
+order~$1$ is impossible. For odd $k$ one has
+\[
+\lambda_1(J_k)=\frac{4k^2-1}{8},
+\]
+so normalized equality would force
+\[
+\frac{p^2}{n^2}=4k^2-1.
+\]
+But
+\[
+(2k-1)^2<4k^2-1<(2k)^2,
+\]
+so $4k^2-1$ is not a square; this is impossible because $p^2/n^2$ is a rational square.
+
+It remains to treat the mixed case $b_0\neq 0$.
+
+If $k$ is odd, write $k=2r+1$,
+\[
+a:=4k^2-1,
+\qquad
+y:=(-1)^r\frac{b_k}{b_0}.
+\]
+A direct Hankel expansion gives
+\[
+\lambda_1=\frac{1-ay^2}{8(1+y^2)},
+\qquad
+\lambda_2=
+\frac{y(a+1)\bigl((a+9)y^2-(a-7)\bigr)}{128(1+y^2)^2}.
+\]
+Compatibility with the anchor $J_0$ forces $\lambda_2=0$. Hence either $y=0$, which yields
+$b_k=0$, or
+\[
+y^2=\frac{a-7}{a+9}.
+\]
+In the latter case normalized equality at order~$1$ gives
+\[
+q=8\lambda_1=\frac{1-ay^2}{1+y^2}
+=-\frac{(a-9)(a-1)}{2(a+1)}<0,
+\]
+contradiction.
+
+If $k$ is even, write $k=2r$,
+\[
+a:=4k^2-1,
+\qquad
+y:=(-1)^r\frac{b_k}{b_0}.
+\]
+Then the same-parity Hankel expansion yields
+\[
+\lambda_1=\frac{1-ay}{8(1+y)}.
+\]
+Compatibility with the anchor implies, after eliminating the third-order coefficient,
+\[
+y\bigl(A(a)+B(a)y+C(a)y^2\bigr)=0,
+\]
+where
+\[
+A(a)=a^3-29a^2-253a-223,
+\]
+\[
+B(a)=-a^3+157a^2-67a-225,
+\]
+\[
+C(a)=192a(a+1).
+\]
+If $y\neq 0$, then using
+\[
+q=\frac{1-ay}{1+y}
+\]
+to eliminate $y$ gives
+\[
+\begin{aligned}
+2(a+1)^3q^2
+&+\bigl(3a^4-216a^3-666a^2-672a-225\bigr)q\\
+&+a\bigl(a^4-30a^3-96a^2-98a-33\bigr)=0.
+\end{aligned}
+\]
+For $k\ge 4$ one has $a\ge 63$, and all three coefficients above are strictly positive, which is
+impossible for $q>0$. The remaining case $k=2$ is an explicit low-order calculation of the same
+type and again forces $b_2=0$.
+
+Thus in every case $b_k=0$.
+\end{proof}
+
+\subsection*{A second-order normal form in the anchored even-odd support-three sector}
+
+\begin{proposition}\label{prop:anchor-evenodd-second-order}
+Let $m\ge 2$ be even and $n\ge 1$ odd. Set
+\[
+\widetilde J_m:=(-1)^{m/2}J_m,
+\qquad
+\widetilde J_n:=(-1)^{(n-1)/2}J_n,
+\qquad
+M:=m^2,
+\qquad
+N:=n^2.
+\]
+Consider the reduced profile
+\[
+F(t)=J_0(t)+b\widetilde J_m(t)+c\widetilde J_n(t).
+\]
+Then the first two one-frequency shift coefficients of $F$ are
+\[
+\lambda_1(F)
+=
+-\frac{M\,b(b+1)+(N-1)c^2}{2\bigl((1+b)^2+c^2\bigr)},
+\]
+and
+\[
+\lambda_2(F)
+=
+-\frac{c\bigl((b+1)\mathcal Q_{M,N}(b)+c^2\mathcal R_{M,N}(b)\bigr)}
+{8\bigl((1+b)^2+c^2\bigr)^2},
+\]
+where
+\[
+\begin{aligned}
+\mathcal Q_{M,N}(b)
+&=
+N^2-2N+1\\
+&\qquad
++b(-M^2-2MN+6M+2N^2-4N+2)\\
+&\qquad
++b^2(M^2-2MN+6M+N^2-2N+1),
+\end{aligned}
+\]
+\[
+\mathcal R_{M,N}(b)
+=
+-M^2b+2MNb+2Mb-N^2b-N^2+2Nb+2N-b-1.
+\]
+\end{proposition}
+
+\begin{proof}
+Using the exact Bessel recurrence in the $(J_0,J_1)$ basis, one has
+\[
+\widetilde J_m(t)
+=
+\Bigl(1-\frac{M(M-4)}{8}u^2+O(u^4)\Bigr)J_0(t)
+\;+\;
+\Bigl(-\frac{M}{2}u+O(u^3)\Bigr)J_1(t),
+\]
+\[
+\widetilde J_n(t)
+=
+\begin{aligned}[t]
+&\Bigl(\frac{N-1}{2}u+O(u^3)\Bigr)J_0(t)\\
+&\qquad +\Bigl(1-\frac{(N-1)^2}{8}u^2+O(u^4)\Bigr)J_1(t),
+\end{aligned}
+\qquad
+u=t^{-1}.
+\]
+Hence
+\[
+F(t)=A(u)J_0(t)+B(u)J_1(t),
+\]
+with
+\[
+A(u)
+=
+(1+b)+\frac{N-1}{2}cu-\frac{M(M-4)}{8}bu^2+O(u^3),
+\]
+\[
+B(u)
+=
+c-\frac{M}{2}bu-\frac{(N-1)^2}{8}cu^2+O(u^3).
+\]
+Rotating the leading phase so that the tangent series has vanishing constant term and expanding
+that tangent series to order $u^2$ gives the displayed formulas for $\lambda_1(F)$ and
+$\lambda_2(F)$.
+\end{proof}
+
+\begin{corollary}\label{cor:anchor-evenodd-mobius}
+Retain the notation of \Cref{prop:anchor-evenodd-second-order}, and assume
+\[
+c\neq 0,
+\qquad
+b\neq -1,
+\qquad
+\lambda_2(F)=0.
+\]
+Then:
+\begin{enumerate}[label=\emph{(\roman*)}]
+\item the genuinely support-three branch is contained in the explicit candidate curve
+\[
+c^2=-\frac{(b+1)\mathcal Q_{M,N}(b)}{\mathcal R_{M,N}(b)};
+\]
+\item along that candidate curve, $\lambda_1$ collapses to the fractional-linear function
+\[
+\lambda_1
+=
+\frac{-M^2b+4Mb+N^2b+N^2-2Nb-2N+b+1}
+{4(Mb-Nb-N+b+1)};
+\]
+\item its derivative is
+\[
+\frac{d\lambda_1}{db}
+=
+\frac{M(N-1)(M-N-3)}
+{4(Mb-Nb-N+b+1)^2}.
+\]
+\end{enumerate}
+In particular, for genuine even-odd support-three data one has $M-N-3\neq 0$, so $\lambda_1$
+is a strict coordinate on every real branch of the second-order candidate curve.
+\end{corollary}
+
+\begin{proof}
+Part~\emph{(i)} is the equation $\lambda_2(F)=0$ from
+\Cref{prop:anchor-evenodd-second-order}. Substituting that relation into the formula for
+$\lambda_1(F)$ yields part~\emph{(ii)}, and differentiating the resulting fractional-linear
+expression gives part~\emph{(iii)}. Finally, if $M-N-3=0$, then
+\[
+(2k)^2-(2r+1)^2=3,
+\]
+which is impossible because it would factor as
+\[
+\bigl(2k-(2r+1)\bigr)\bigl(2k+(2r+1)\bigr)=3
+\]
+with no integer solutions.
+\end{proof}
+
+\subsection*{Second-order projective rigidity in the anchored even-odd sector}
+
+\begin{theorem}\label{thm:anchor-evenodd-second-order-rigidity}
+Assume that one active positive vertical frequency carries the pure vertical anchor profile
+$J_0$. Let a second active positive vertical frequency carry a profile of the form
+\[
+F(t)=aJ_0(t)+bJ_m(t)+cJ_n(t),
+\qquad
+a\neq 0,
+\qquad
+m\ge 2\ \text{even},
+\qquad
+n\ge 1\ \text{odd}.
+\]
+If the two active frequencies belong to a common infinite-resonance configuration, then
+\[
+c=0.
+\]
+Equivalently, the anchored even-odd support-three sector is disjoint from the $J_0$ fiber of
+the normalized Pr\"ufer map already at second order.
+\end{theorem}
+
+\begin{proof}
+By scaling, we may assume $a=1$ and replace $J_m,J_n$ by the normalized modes
+\[
+\widetilde J_m:=(-1)^{m/2}J_m,
+\qquad
+\widetilde J_n:=(-1)^{(n-1)/2}J_n,
+\]
+which does not affect real solvability. Retain the notation
+\[
+M:=m^2,
+\qquad
+N:=n^2.
+\]
+Suppose first that $c\neq 0$.
+
+If $b=-1$, then \Cref{prop:anchor-evenodd-second-order} gives
+\[
+\lambda_1(F)=\frac{1-N}{2}<0,
+\]
+which is incompatible with the anchor normalization
+\[
+q:=8\lambda_1(F)>0.
+\]
+So we may also assume $b\neq -1$.
+
+By \Cref{cor:anchor-evenodd-mobius}, the conditions
+\[
+c\neq 0,
+\qquad
+b\neq -1,
+\qquad
+\lambda_2(F)=0
+\]
+force $F$ to lie on the second-order candidate curve, and along that curve the relation
+\[
+q=8\lambda_1(F)>0
+\]
+has the unique solution
+\[
+b=
+\frac{2N^2+Nq-4N-q+2}
+{2M^2+Mq-8M-2N^2-Nq+4N+q-2}.
+\]
+Substituting this into the candidate-curve equation from
+\Cref{cor:anchor-evenodd-mobius}\emph{(i)} yields
+\[
+c^2
+=
+-\frac{M^2(2M+q-8)\bigl(q^2+(2M+4N-12)q+8(N-1)^2\bigr)}
+{(4N+q-4)\bigl(2M^2+Mq-8M-2N^2-Nq+4N+q-2\bigr)^2}.
+\]
+Now
+\[
+4N+q-4>0,
+\qquad
+2M+q-8\ge q>0,
+\]
+and
+\[
+q^2+(2M+4N-12)q+8(N-1)^2>0.
+\]
+Hence the right-hand side is strictly negative, contradicting real-valuedness of $c^2$.
+
+Therefore $c\neq 0$ is impossible, and so $c=0$.
+\end{proof}
+
+\subsection*{Second-order projective rigidity in the anchored odd-odd sector}
+
+\begin{theorem}\label{thm:anchor-oddodd-second-order-rigidity}
+Assume that one active positive vertical frequency carries the pure vertical anchor profile
+$J_0$. Let a second active positive vertical frequency carry a profile of the form
+\[
+F(t)=aJ_0(t)+bJ_m(t)+cJ_n(t),
+\qquad
+a\neq 0,
+\qquad
+m,n\ge 1\ \text{odd},
+\qquad
+m\neq n.
+\]
+If the two active frequencies belong to a common infinite-resonance configuration, then
+\[
+b=c=0.
+\]
+\end{theorem}
+
+\begin{proof}
+By scaling, we may assume $a=1$. Normalize the odd modes by
+\[
+\widetilde J_m:=(-1)^{(m-1)/2}J_m,
+\qquad
+\widetilde J_n:=(-1)^{(n-1)/2}J_n,
+\]
+and write
+\[
+M:=m^2,
+\qquad
+N:=n^2.
+\]
+Set
+\[
+u:=b+c,
+\qquad
+d:=(M-1)b+(N-1)c.
+\]
+In these coordinates the first two normalized Pr\"ufer coefficients are
+\[
+\lambda_1(F)=-\frac{du}{2(1+u^2)},
+\]
+\[
+\lambda_2(F)=
+\frac{2ud^2-(M+N-2)(1+u^2)d+(M-1)(N-1)u(1+u^2)}
+{8(1+u^2)^2}.
+\]
+Now impose the anchor normalization
+\[
+q:=8\lambda_1(F)>0.
+\]
+Then
+\[
+d=-\frac{q(1+u^2)}{4u},
+\]
+and substituting this into $\lambda_2(F)=0$ gives
+\[
+u^2
+=
+-\frac{q\bigl(q+2(M+N-2)\bigr)}
+{q^2+2(M+N-2)q+8(M-1)(N-1)}.
+\]
+The right-hand side is strictly negative for every $q>0$, which is impossible over the reals.
+Hence no genuinely support-three anchored odd-odd configuration exists. The remaining
+support-two cases are excluded by \Cref{thm:anchor-support-two}, so necessarily $b=c=0$.
+\end{proof}
+
+\subsection*{The anchored even-even sector}
+
+\begin{proposition}\label{prop:anchor-eveneven-candidate}
+Let
+\[
+F(t)=J_0(t)+b\widetilde J_m(t)+c\widetilde J_n(t),
+\qquad
+m,n\ge 2\ \text{even},
+\qquad
+m\neq n,
+\]
+where
+\[
+\widetilde J_\ell:=(-1)^{\ell/2}J_\ell,
+\qquad
+M:=m^2,
+\qquad
+N:=n^2.
+\]
+Set
+\[
+U:=b+c,
+\qquad
+D:=Mb+Nc.
+\]
+Then
+\[
+\lambda_1(F)=-\frac{D}{2(U+1)},
+\qquad
+\lambda_2(F)=0.
+\]
+If moreover
+\[
+q:=8\lambda_1(F)>0,
+\qquad
+\lambda_3(F)=-\frac{25}{384}q^2,
+\]
+then the even-even support-three branch is reduced to the unique candidate curve
+\[
+U(q)=-q\,\frac{\mathcal N_{M,N}(q)}{\mathcal D_{M,N}(q)},
+\]
+where
+\[
+\begin{aligned}[t]
+\mathcal N_{M,N}(q)
+&=8M^2+8MN+6Mq-64M\\
+&\qquad +8N^2+6Nq-64N+q^2-124q+128,
+\end{aligned}
+\]
+\[
+\begin{aligned}[t]
+\mathcal D_{M,N}(q)
+&=32M^2N+8M^2q+32MN^2+32MNq-256MN\\
+&\qquad +6Mq^2-64Mq+8N^2q+6Nq^2\\
+&\qquad -64Nq+q^3-124q^2+128q,
+\end{aligned}
+\]
+and along that curve one has
+\[
+\lambda_5(F)-\frac{1073}{5120}q^3
+=
+\frac{-q\,\mathcal P_{M,N}(q)}
+{491520\,(4M+4N+3q-32)},
+\]
+where $\mathcal P_{M,N}(q)$ is the explicit symmetric quintic
+\[
+\mathcal P_{M,N}(q)
+=
+\begin{aligned}[t]
+&q^5+(8S-564)q^4+A_{M,N}q^3+B_{M,N}q^2+C_{M,N}q+D_{M,N},
+\end{aligned}
+\]
+with
+\[
+S:=M+N,
+\qquad
+P:=MN.
+\]
+\[
+\begin{aligned}
+A_{M,N}&=20S^2+20P-2640S+278544,\\
+B_{M,N}&=16S^3+88PS-3120S^2-3760P+496000S-3727616,\\
+C_{M,N}&=64P^2+96PS^2-1152PS-23552P\\
+&\qquad -1984S^3+81920S^2-1068032S+4726784,\\
+D_{M,N}&=128P^2S-4096P^2-1024PS^2+36864PS\\
+&\qquad -131072P+2048S^3-81920S^2+557056S-1048576.
+\end{aligned}
+\]
+\end{proposition}
+
+\begin{proof}
+For even normalized modes one has
+\[
+\widetilde J_\ell(t)
+=
+\begin{aligned}
+&\Bigl(1-\frac{\ell^2(\ell^2-4)}{8}u^2
++\frac{\ell^2(\ell^2-4)^2(\ell^2-16)}{384}u^4+O(u^6)\Bigr)J_0(t)
+\\
+&\quad+\Bigl(
+\begin{aligned}[t]
+&-\frac{\ell^2}{2}u+\frac{\ell^2(\ell^2-4)^2}{48}u^3\\
+&\qquad -\frac{\ell^2(\ell^2-4)^2(\ell^2-16)^2}{3840}u^5+O(u^7)
+\end{aligned}
+\Bigr)J_1(t),
+\end{aligned}
+\]
+Here $u=t^{-1}$.
+Substituting these expansions into
+\[
+F(t)=A(u)J_0(t)+B(u)J_1(t)
+\]
+and then into the general odd-order Pr\"ufer formulas yields
+\[
+\lambda_1(F)=-\frac{D}{2(U+1)},
+\qquad
+\lambda_2(F)=0.
+\]
+Imposing
+\[
+q=8\lambda_1(F)>0
+\]
+gives
+\[
+D=-\frac{q(U+1)}4.
+\]
+Substituting this into the order-$3$ relation
+\[
+\lambda_3(F)=-\frac{25}{384}q^2
+\]
+produces a linear equation in $U$, whose unique solution is the displayed rational function
+$U(q)$. Finally, substituting both
+\[
+D=-\frac{q(U+1)}4,
+\qquad
+U=U(q)
+\]
+into the order-$5$ coefficient gives the displayed residual formula with the explicit symmetric
+quintic $\mathcal P_{M,N}(q)$.
+\end{proof}
+
+\begin{theorem}\label{thm:anchor-eveneven-rigidity}
+Assume that one active positive vertical frequency carries the pure vertical anchor profile
+$J_0$. Let a second active positive vertical frequency carry a profile of the form
+\[
+F(t)=aJ_0(t)+bJ_m(t)+cJ_n(t),
+\qquad
+a\neq 0,
+\qquad
+m,n\ge 2\ \text{even},
+\qquad
+m\neq n.
+\]
+If the two active frequencies belong to a common infinite-resonance configuration, then
+\[
+b=c=0.
+\]
+\end{theorem}
+
+\begin{proof}
+By scaling, we may assume $a=1$, and we replace $J_m,J_n$ by the normalized even modes
+\[
+\widetilde J_m:=(-1)^{m/2}J_m,
+\qquad
+\widetilde J_n:=(-1)^{n/2}J_n.
+\]
+Suppose first that
+\[
+bc\neq 0.
+\]
+Then we are in the genuinely support-three even-even sector, so
+\Cref{prop:anchor-eveneven-candidate} applies. Write
+\[
+M=4x^2,
+\qquad
+N=4y^2,
+\qquad
+2\le x<y,
+\]
+and let $\mathcal P_{x,y}(q):=\mathcal P_{M,N}(q)$.
+
+We claim that
+\[
+\mathcal P_{x,y}(q)>0
+\qquad (q>0).
+\]
+
+If $x\ge 3$, then
+\[
+\mathcal P_{x,y}(0)=131072(x-1)^2(x+1)^2(y-1)^2(y+1)^2(x^2+y^2-8)>0,
+\]
+so it is enough to prove
+\[
+\mathcal P'_{x,y}(q)>0
+\qquad (q\ge 0).
+\]
+Write
+\[
+a:=x^2,
+\qquad
+d:=y^2-x^2>0.
+\]
+Then
+\[
+\mathcal P'_{x,y}(q)
+=
+\begin{aligned}[t]
+&5q^4+(128x^2+128y^2-2128)q^3\\
+&\qquad +48Q_2(a,d)q^2+512Q_1(a,d)q+4096Q_0(a,d),
+\end{aligned}
+\]
+where
+\[
+Q_2(a,d)=20a^2+20ad-264a+4d^2-132d+17409,
+\]
+\[
+\begin{aligned}
+Q_1(a,d)
+&=76a^3+114a^2d-1015a^2+46ad^2-1015ad+15500a\\
+&\qquad +4d^3-195d^2+7750d-14561,
+\end{aligned}
+\]
+\[
+\begin{aligned}
+Q_0(a,d)
+&=28a^4+56a^3d-284a^3+34a^2d^2-426a^2d+1188a^2\\
+&\qquad +6ad^3-204ad^2+1188ad-2086a\\
+&\qquad -31d^3+320d^2-1043d+1154.
+\end{aligned}
+\]
+Since $d\ge 2x+1$ and
+\[
+\partial_dQ_2(a,d)=4(5a+2d-33)>0,
+\]
+\[
+\partial_dQ_1(a,d)=114a^2+92ad-1015a+12d^2-390d+7750>0,
+\]
+\[
+\begin{aligned}[t]
+\partial_dQ_0(a,d)
+&=56a^3+68a^2d-426a^2+18ad^2-408ad+1188a\\
+&\qquad -93d^2+640d-1043>0.
+\end{aligned}
+\]
+throughout the region $x\ge 3$, $d\ge 2x+1$, the coefficients are minimized by the adjacent pair
+$y=x+1$. It is therefore enough to check
+\[
+\Pi_x(q):=\mathcal P'_{x,x+1}(q)>0.
+\]
+For every $x\ge 3$,
+\[
+\Pi_x(q)
+=
+\begin{aligned}[t]
+&5q^4+\alpha_x q^3+\beta_x q^2+\gamma_x q+\delta_x,
+\end{aligned}
+\]
+\[
+\begin{aligned}
+\alpha_x&=256x^2+256x-2128,\\
+\beta_x&=48(100x^4+200x^3-1140x^2-1240x+16769),\\
+\gamma_x&=512(76x^6+228x^5-717x^4-1814x^3+13799x^2+14744x-7002),\\
+\delta_x&=16384(x-1)^2(x+2)^2(7x^4+14x^3-30x^2-37x+25).
+\end{aligned}
+\]
+and every coefficient is strictly positive. Hence $\Pi_x(q)>0$ for $q\ge 0$, so
+\[
+\mathcal P_{x,y}(q)>0
+\qquad (q>0)
+\]
+throughout the large-even interior.
+
+If $x=2$ and $y\ge 5$, write
+\[
+r:=y^2-9\ge 16,
+\qquad
+q=(r+8)z.
+\]
+After dividing by $(r+8)^2$, the residual becomes
+\[
+\begin{aligned}
+G_r(z)
+&=r^3z^5+32r^3z^4+320r^3z^3+1024r^3z^2\\
+&\qquad +24r^2z^5+364r^2z^4+1600r^2z^3\\
+&\qquad\qquad +12544r^2z^2-28672r^2z\\
+&\qquad +192rz^5-320rz^4+199184rz^3\\
+&\qquad\qquad +1460224rz^2-4096rz+1179648r\\
+&\qquad +512z^5-9472z^4+1654912z^3\\
+&\qquad\qquad +16347648z^2+1802240z+5898240.
+\end{aligned}
+\]
+For $r\ge 16$ the coefficients of $z^5$, $z^4$, and $z^3$ are strictly positive, and one can
+decompose
+\[
+G_r(z)=z^3(a_5z^2+a_4z+a_3)+(a_2z^2-bz+c),
+\]
+with all of $a_5,a_4,a_3$ positive, and
+\[
+a_2z^2-bz+c>0
+\qquad (z>0),
+\]
+because
+\[
+a_2=1024r^3+12544r^2+1460224r+16347648,
+\]
+\[
+b=28672r^2+4096r-1802240,
+\qquad
+c=1179648r+5898240,
+\]
+\[
+4a_2c-b^2
+=16777216(239r^4+4954r^3+434487r^2+6652096r+22795280)>0.
+\]
+Hence $G_r(z)>0$ for all $z>0$, so $\mathcal P_{16,N}(q)>0$ for every $q>0$ whenever
+$N\ge 100$.
+
+It remains to treat the isolated pairs $(x,y)=(2,3)$ and $(2,4)$, i.e.
+\[
+(M,N)=(16,36)
+\qquad\text{and}\qquad
+(M,N)=(16,64).
+\]
+Here
+\[
+\mathcal P_{16,36}(q)=q^5-148q^4+206864q^3+16347648q^2+14417920q+377487360,
+\]
+\[
+\mathcal P_{16,64}(q)=q^5+76q^4+215824q^3+27535104q^2+5529600q+3185049600.
+\]
+The second polynomial is manifestly positive on $(0,\infty)$. For the first one, a direct
+Sturm count shows that it has no positive real root. Since its constant term is positive, it
+also satisfies
+\[
+\mathcal P_{16,36}(q)>0
+\qquad (q>0).
+\]
+
+Thus $\mathcal P_{M,N}(q)>0$ for every pair of distinct even squares $M,N$ and every $q>0$.
+This contradicts the fifth-order anchored compatibility equation from
+\Cref{prop:anchor-eveneven-candidate}. Therefore the case $bc\neq 0$ is impossible.
+
+The remaining support-two cases are excluded by \Cref{thm:anchor-support-two}. Hence
+\[
+b=c=0.
+\]
+\end{proof}
+
+\subsection*{Generic finite resonance on the quotient}
+
+We finally return to the general multi-frequency quotient geometry. Let $\mathcal N$ be a set of
+active positive frequencies with $\abs{\mathcal N}\ge 2$. On a fixed quotient stratum, each
+active frequency has a one-frequency reduction
+\[
+\Gamma_n(t)=P_n(t^{-1})J_0(nt)+Q_n(t^{-1})J_1(nt),
+\]
+with complex polynomials $P_n,Q_n$, and therefore a leading oscillatory pair
+$(\alpha_n,\beta_n)\in\C^2\setminus\{(0,0)\}$. By \Cref{prop:one-frequency-geometry}, the
+necessary condition for infinitely many real zeros is
+\[
+R_n:=\Im(\overline{\alpha_n}\beta_n)=0.
+\]
+On the corresponding oscillatory-real chart, the positive zeros admit asymptotic expansions
+\[
+t_{n,k}
+=
+k\pi+\delta_n+\sum_{r=1}^L \lambda_{n,r}(k\pi)^{-r}+O(k^{-L-1}),
+\]
+and \Cref{prop:compatibility-hierarchy-paper} forces all normalized coefficients to agree.
+
+\begin{theorem}\label{thm:generic-finite-resonance}
+Fix a quotient stratum with at least two active positive frequencies. Then the subset of points
+admitting infinitely many common real resonant parameters is contained in a countable union of
+proper real-analytic subsets. In particular, on each such stratum the infinite-resonance locus
+is meagre and has Lebesgue measure zero.
+\end{theorem}
+
+\begin{proof}
+If an active frequency $n$ satisfies $R_n\neq 0$, then \Cref{prop:one-frequency-geometry} shows that
+$\Gamma_n$ has only finitely many real zeros. Hence infinite common resonance is possible only on
+the oscillatory-real chart defined by
+\[
+R_n=0
+\qquad (n\in\mathcal N).
+\]
+Fix a base frequency $n_1\in\mathcal N$. For each integer vector
+\[
+\mathbf q=(q_n)_{n\in\mathcal N\setminus\{n_1\}}\in\Z^{\abs{\mathcal N}-1}
+\]
+and each order $L\ge 1$, let $\mathscr B_{L,\mathbf q}$ be the real-analytic subset cut out by
+\[
+n\delta_{n_1}-n_1\delta_n=q_n\pi
+\qquad (n\neq n_1),
+\]
+and
+\[
+n_1^{r+1}\lambda_{n,r}=n^{r+1}\lambda_{n_1,r}
+\qquad (n\neq n_1,\ 1\le r\le L).
+\]
+By \Cref{prop:compatibility-hierarchy-paper}, every point with infinitely many common real resonant
+parameters lies in
+\[
+\bigcup_{\mathbf q}\mathscr B_{L,\mathbf q}
+\]
+for every $L$.
+
+It remains to show properness. This already follows for $L=1$. On a fixed quotient stratum, each
+function $R_n$ depends only on the corresponding one-frequency factor, and the projection onto
+that factor is surjective. On that factor there are explicit obstruction data with $R_n\neq 0$,
+for example the profile $J_0+iJ_1$. Hence $R_n$ is not identically zero on the stratum, so the
+oscillatory-real equation $R_n=0$ cuts out a proper real-analytic subset. Therefore each
+$\mathscr B_{1,\mathbf q}$ is proper, and the infinite-resonance locus is contained in a
+countable union of proper real-analytic subsets.
+
+The meagreness and measure-zero statements are standard consequences, since a proper
+real-analytic subset of a finite-dimensional real-analytic manifold has empty interior and
+Lebesgue measure zero.
+\end{proof}
+
+\begin{corollary}\label{cor:geometry-landscape}
+Let $\Xi\in\mathcal T_{M,N}$ be a quotient datum.
+\begin{enumerate}[label=\emph{(\roman*)}]
+\item If all positive-frequency obstruction components of $\Xi$ vanish identically, then $\Xi$
+lies in the beta-uniform obstruction-free sector.
+\item If exactly one positive frequency is active, then the real resonant parameter set is
+governed by the one-frequency dichotomy of \Cref{prop:one-frequency-geometry}: it is finite in
+the asymptotically nonresonant branch and infinite in the oscillatory-real branch.
+\item If at least two distinct positive active frequencies carry the same reduced profile, then
+the real resonant parameter set is finite.
+\item If one active positive frequency is the anchor $J_0$ and another is supported on
+$\{0,k\}$ for some $k\ge 1$, then the real resonant parameter set is finite.
+\item If one active positive frequency is the anchor $J_0$ and another lies in the anchored
+support-three sector, then the real resonant parameter set is finite. More precisely:
+the even-odd and odd-odd sectors are excluded at second order, and the even-even sector is
+excluded at fifth order.
+\item If at least two positive active frequencies are present in a multi-frequency quotient
+stratum, then outside a countable union of proper real-analytic subsets of that stratum the real
+resonant parameter set is finite.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+Part~\emph{(i)} is exactly the kernel description in \Cref{thm:obstruction-quotient}.
+Part~\emph{(ii)} is \Cref{prop:one-frequency-geometry}. Part~\emph{(iii)} is
+\Cref{thm:shared-profile-finite}, part~\emph{(iv)} is \Cref{thm:anchor-support-two},
+part~\emph{(v)} is the combination of
+\Cref{thm:anchor-evenodd-second-order-rigidity,thm:anchor-oddodd-second-order-rigidity,thm:anchor-eveneven-rigidity},
+and part~\emph{(vi)} is \Cref{thm:generic-finite-resonance}.
+\end{proof}
+
+\begin{remark}
+\Cref{cor:geometry-landscape} describes the current boundary of the problem inside the
+finite-dimensional obstruction quotient. The unresolved sector is no longer general
+multi-frequency resonance. It is the genuinely non-synchronized, oscillatory-real, effective
+multi-frequency sector that survives the explicit kernel, the shared-profile theorem, and the
+anchored support-two and support-three rigidity results. In particular, once a $J_0$ anchor is
+present, the entire support-three picture is now closed.
+\end{remark}
+
+\section{Finite-Jet Rigidity on Bounded Bandwidth Windows}\label{sec:finite-jet}
+
+The support-two and support-three results of \Cref{sec:geometry} are low-order shadows of a
+more systematic finite-jet picture. In this section we isolate the bounded-bandwidth mechanism
+behind that picture.
+
+\subsection*{A central-factorial basis for the normalized Lommel coefficients}
+
+For even and odd normalized modes, write
+\[
+\widetilde J_{2k}(t)=\widetilde A_{2k}(u)J_0(t)+\widetilde B_{2k}(u)J_1(t),
+\]
+\[
+\widetilde J_{2k+1}(t)=\widetilde A_{2k+1}(u)J_0(t)+\widetilde B_{2k+1}(u)J_1(t),
+\qquad
+u=t^{-1},
+\]
+with
+\[
+\widetilde J_{2k}:=(-1)^kJ_{2k},
+\qquad
+\widetilde J_{2k+1}:=(-1)^kJ_{2k+1}.
+\]
+These coefficients are governed by the exact Bessel recurrence in the $(J_0,J_1)$ basis, or
+equivalently by the classical Lommel polynomials; see \cite[\S10.74]{DLMF}.
+
+\begin{theorem}\label{thm:central-factorial-basis}
+For every $k\ge 1$,
+\[
+\widetilde A_{2k}(u)=\sum_{j=0}^{k-1} E_j\bigl((2k)^2\bigr)u^{2j},
+\qquad
+\widetilde B_{2k}(u)=\sum_{j=0}^{k-1} F_j\bigl((2k)^2\bigr)u^{2j+1},
+\]
+and for every $k\ge 0$,
+\[
+\widetilde A_{2k+1}(u)=\sum_{j=0}^{k} G_j\bigl((2k+1)^2\bigr)u^{2j+1},
+\qquad
+\widetilde B_{2k+1}(u)=\sum_{j=0}^{k} H_j\bigl((2k+1)^2\bigr)u^{2j}.
+\]
+The coefficient polynomials are given by
+\[
+E_0(M)=1,
+\]
+\[
+E_j(M)
+=
+(-1)^j\,
+\frac{
+M(M-4)^2(M-16)^2\cdots(M-(2j-2)^2)^2(M-(2j)^2)
+}
+{4^j(2j)!}
+\]
+for $j\ge 1$,
+\[
+F_j(M)
+=
+(-1)^{j+1}\,
+\frac{
+M(M-4)^2(M-16)^2\cdots(M-(2j)^2)^2
+}
+{2\cdot 4^j(2j+1)!},
+\]
+\[
+G_j(N)
+=
+(-1)^j\,
+\frac{
+(N-(2j+1)^2)(N-1)^2(N-9)^2\cdots(N-(2j-1)^2)^2
+}
+{2\cdot 4^j(2j+1)!},
+\]
+\[
+H_0(N)=1,
+\qquad
+H_j(N)
+=
+(-1)^j\,
+\frac{
+(N-1)^2(N-9)^2\cdots(N-(2j-1)^2)^2
+}
+{4^j(2j)!}
+\]
+for $j\ge 1$.
+
+In particular, the families $E_j,F_j,G_j,H_j$ form a parity-adapted central-factorial basis in
+the squared order: they have strict degree growth and vanish at lower same-parity squares with
+the displayed multiplicities.
+\end{theorem}
+
+\begin{proof}
+The Lommel representation expresses $J_n$ exactly as a combination of $J_0$ and $J_1$ with
+polynomial coefficients in $u=t^{-1}$. Substituting $n=2k$ and $n=2k+1$, inserting the sign
+normalization, and re-indexing the explicit Lommel sums yields the displayed formulas. The
+degree and vanishing statements are immediate from the product structure.
+\end{proof}
+
+\subsection*{Bounded-bandwidth reconstruction}
+
+Fix integers $K\ge 1$ and $L\ge 0$, and consider the bounded even/odd window
+\[
+\mathcal V_{K,L}
+:=
+\left\{
+F(t)=a_0J_0(t)+\sum_{k=1}^{K} b_k \widetilde J_{2k}(t)
++\sum_{\ell=0}^{L} c_\ell \widetilde J_{2\ell+1}(t)
+\right\}.
+\]
+Write
+\[
+F(t)=A(u)J_0(t)+B(u)J_1(t).
+\]
+By parity,
+\[
+B(u)=\sum_{j=0}^{K-1}\beta^{\mathrm{ev}}_j u^{2j+1}
++\sum_{j=0}^{L}\beta^{\mathrm{odd}}_j u^{2j}.
+\]
+The coefficient of $u^{2K-1}$ in the even block comes only from $\widetilde J_{2K}$, while the
+coefficient of $u^{2L}$ in the odd block comes only from $\widetilde J_{2L+1}$. This yields a
+global triangular reconstruction.
+
+\begin{theorem}\label{thm:bounded-bandwidth-reconstruction}
+For every bandwidth window $(K,L)$, the coefficient map
+\[
+\Phi_{K,L}:\mathcal V_{K,L}\to \R^{K+L+2},
+\]
+\[
+F\longmapsto
+\Bigl(
+a_0,\ 
+[u^0]B,\ [u^2]B,\dots,[u^{2L}]B,\ 
+[u^1]B,\ [u^3]B,\dots,[u^{2K-1}]B
+\Bigr)
+\]
+is a linear isomorphism.
+
+Equivalently, the full coefficient vector
+\[
+(a_0,b_1,\dots,b_K,c_0,\dots,c_L)
+\]
+is recovered uniquely from a finite jet of the $J_1$-channel alone.
+\end{theorem}
+
+\begin{proof}
+By \Cref{thm:central-factorial-basis}, the even contribution to $B(u)$ is triangular in the
+support index: the coefficient of $u^{2K-1}$ is exactly $b_KF_{K-1}((2K)^2)$ and this scalar is
+nonzero. Hence $b_K$ is recovered first, then recursively $b_{K-1},\dots,b_1$. The same
+argument applies to the odd block, where $c_L$ is recovered from the coefficient of $u^{2L}$,
+then recursively $c_{L-1},\dots,c_0$. Together with the separated scalar $a_0$, this gives the
+inverse to $\Phi_{K,L}$.
+\end{proof}
+
+\subsection*{Pad\'e reduction and generic-shell injectivity}
+
+For $F\in\mathcal V_{K,L}$, set
+\[
+z_0:=A(0)+iB(0)\neq 0,
+\qquad
+C_F(u)+iS_F(u):=\frac{A(u)+iB(u)}{z_0}.
+\]
+Then
+\[
+C_F(0)=1,
+\qquad
+S_F(0)=0,
+\qquad
+\tan s_F(u)=\frac{S_F(u)}{C_F(u)}=:R_F(u).
+\]
+Since $A$ and $B$ are polynomials, $R_F$ is a rational function of bounded degree.
+
+\begin{proposition}\label{prop:pade-reconstruction}
+Fix $(K,L)$ and define
+\[
+d_A:=\max(2K-2,\,2L-1),
+\qquad
+d_B:=\max(2K-1,\,2L).
+\]
+Then on $\mathcal V_{K,L}$, sufficiently high normalized Pr\"ufer jets determine the rational
+phase quotient $R_F=S_F/C_F$ uniquely.
+\end{proposition}
+
+\begin{proof}
+The formal series $s_F(u)$ determines the jet of $R_F(u)=\tan s_F(u)$ coefficientwise. Now
+write
+\[
+R_F(u)=\frac{P(u)}{Q(u)},
+\qquad
+Q(0)=1,
+\qquad
+\deg P\le d_B,\quad \deg Q\le d_A.
+\]
+The identity $Q(u)R_F(u)-P(u)=0$ modulo $u^{d_A+d_B+2}$ gives the standard square Pad\'e
+reconstruction system in the coefficients of $P$ and $Q$, so sufficiently many coefficients of
+$R_F$ determine the rational quotient uniquely.
+\end{proof}
+
+\begin{proposition}\label{prop:boundary-thinness}
+Fix a bounded bandwidth window $\mathcal V_{K,L}$ and let
+\[
+R(u)=\frac{\widehat S(u)}{\widehat C(u)}
+\]
+be a normalized rational phase quotient, where $(\widehat C,\widehat S)$ is the unique reduced
+coprime representative with $\widehat C(0)=1$. Let
+\[
+C_F+iS_F=\frac{A_F+iB_F}{z_{0,F}}
+\]
+be the normalized phase pair of some $F\in\mathcal V_{K,L}$ realizing this quotient, and suppose
+\[
+C_F=h\,\widehat C,\qquad S_F=h\,\widehat S
+\]
+for a real polynomial $h$ with $h(0)=1$ and $\deg h=s\ge 0$. Then the top $s$ coefficients of
+$S_F$ vanish. More precisely, if
+\[
+d_B:=\max(2K-1,\,2L),
+\]
+then
+\[
+[u^{d_B}]S_F=[u^{d_B-1}]S_F=\cdots=[u^{d_B-s+1}]S_F=0.
+\]
+\end{proposition}
+
+\begin{proof}
+Write
+\[
+h(u)=1+h_1u+\cdots+h_su^s,
+\qquad
+h_s\neq 0
+\]
+if $s\ge 1$, and
+\[
+\widehat S(u)=\sum_{r\ge 0}\sigma_r u^r.
+\]
+Since $\deg S_F\le d_B$, the identity
+\[
+S_F=h\,\widehat S
+\]
+implies that the coefficients of $u^{d_B+s},u^{d_B+s-1},\dots,u^{d_B+1}$ in $h\,\widehat S$
+vanish. The coefficient of $u^{d_B+s}$ is $h_s\sigma_{d_B}$, so $\sigma_{d_B}=0$. Proceeding
+downward, the coefficient of $u^{d_B+s-r}$ forces $\sigma_{d_B-r}=0$ for every
+$0\le r\le s-1$. Since the top coefficients of $S_F$ agree with those of $\widehat S$ shifted by
+the multiplier, this gives the claimed vanishing.
+\end{proof}
+
+\begin{remark}
+The bounded-bandwidth inverse problem is therefore no longer a family-by-family elimination
+problem. After \Cref{thm:central-factorial-basis,thm:bounded-bandwidth-reconstruction}, the raw
+coefficient geometry is globally triangular, and after \Cref{prop:pade-reconstruction}, the
+phase quotient is determined by a finite normalized Pr\"ufer jet. What remains is an
+amplitude-lifting problem, and \Cref{prop:boundary-thinness} shows that every nonminimal lift is
+forced onto a successively thinner top-coefficient boundary stratum. Thus the residual
+bounded-bandwidth fibers are stratified by codimension.
+\end{remark}
+
+\appendix
+
+\section{Verification of the low-order elimination formulas}
+
+The elimination arguments in \Cref{sec:geometry} are all finite and explicit. More precisely,
+the anchored support-three theorems use only the low-order coefficients displayed in
+\Cref{prop:anchor-evenodd-second-order,prop:anchor-eveneven-candidate} and elementary algebraic
+operations on the resulting rational identities. In the mixed-parity and odd-odd sectors, the
+second-order contradiction is obtained by direct substitution into the formulas for
+$\lambda_1,\lambda_2$. In the even-even sector, the fifth-order obstruction is reduced to the
+explicit quintic $\mathcal P_{M,N}(q)$, and the positivity arguments in
+\Cref{thm:anchor-eveneven-rigidity} are then proved by the displayed derivative formulas, the
+adjacent-pair reduction, and the final Sturm count for the single exceptional polynomial
+$\mathcal P_{16,36}$. No computer-assisted search over parameter space is used in the proofs:
+the only symbolic input is the exact simplification of the low-order residuals into the
+displayed closed formulas.
+
+\begin{thebibliography}{99}
+
+\bibitem{deFaveri}
+A.~de Faveri,
+\emph{M\"obius disjointness for $C^{1+\varepsilon}$ skew products},
+Int. Math. Res. Not. IMRN 2022, no.~4, 2513--2531.
+\href{https://doi.org/10.1093/imrn/rnaa185}{doi:10.1093/imrn/rnaa185}.
+
+\bibitem{DLMF}
+NIST Digital Library of Mathematical Functions,
+F.~W.~J. Olver, A.~B. Olde Daalhuis, D.~W. Lozier, B.~I. Schneider, R.~F. Boisvert,
+C.~W. Clark, B.~R. Miller, and B.~V. Saunders (eds.),
+\url{https://dlmf.nist.gov/}.
+
+\bibitem{HWY}
+W.~Huang, Z.~Wang, and X.~Ye,
+\emph{Measure complexity and M\"obius disjointness},
+Adv. Math. 347 (2019), 827--858.
+\href{https://doi.org/10.1016/j.aim.2019.03.007}{doi:10.1016/j.aim.2019.03.007}.
+
+\bibitem{KLR}
+A.~Kanigowski, M.~Lema\'nczyk, and M.~Radziwi\l\l,
+\emph{Rigidity in dynamics and M\"obius disjointness},
+Fund. Math. 255 (2021), no.~3, 309--336.
+\href{https://doi.org/10.4064/fm931-11-2020}{doi:10.4064/fm931-11-2020}.
+
+\bibitem{LiuSarnak}
+J.~Liu and P.~Sarnak,
+\emph{The M\"obius function and distal flows},
+Duke Math. J. 164 (2015), no.~7, 1353--1399.
+\href{https://doi.org/10.1215/00127094-2916213}{doi:10.1215/00127094-2916213}.
+
+\bibitem{Sarnak}
+P.~Sarnak,
+\emph{Three lectures on the M\"obius function randomness and dynamics},
+lecture notes, 2011, available at \url{https://publications.ias.edu/sarnak/paper/506}.
+
+\bibitem{WangAnalytic}
+Z.~Wang,
+\emph{M\"obius disjointness for analytic skew products},
+Invent. Math. 209 (2017), no.~1, 175--196.
+\href{https://doi.org/10.1007/s00222-016-0707-z}{doi:10.1007/s00222-016-0707-z}.
+
+\end{thebibliography}
+
+\end{document}
