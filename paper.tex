@@ -14,7 +14,7 @@
 \hypersetup{
   hidelinks,
   pdfauthor={Shun Hu},
-  pdftitle={Exact Denominator Asymptotics, Finite-Jet Rigidity, and Mobius Disjointness for a Class of Two-Step Triangular Skew Products}
+  pdftitle={Exact Denominator Asymptotics, Phase Geometry, and Mobius Disjointness for a Class of Two-Step Triangular Skew Products}
 }
 
 \newtheorem{theorem}{Theorem}[section]
@@ -28,6 +28,7 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\PP}{\mathbb{P}}
 \newcommand{\e}[1]{e^{2\pi i #1}}
 \newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
 \newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
@@ -36,7 +37,7 @@
 \newcommand{\qjp}{q_{j+1}}
 \newcommand{\mobius}{\mu}
 
-\title[Exact Denominator Asymptotics and Finite-Jet Rigidity]{Exact Denominator Asymptotics, Finite-Jet Rigidity, and M\"obius Disjointness for a Class of Two-Step Triangular Skew Products}
+\title[Exact Denominator Asymptotics and Phase Geometry]{Exact Denominator Asymptotics, Phase Geometry, and M\"obius Disjointness for a Class of Two-Step Triangular Skew Products}
 \author[Shun Hu]{Shun Hu}
 \address{The Chinese University of Hong Kong, Shenzhen}
 \email{shunhu@link.cuhk.edu.cn}
@@ -84,9 +85,11 @@ z+A\cos(2\pi n_0 y+\varphi),
 the obstruction reduces to the single scalar equation $J_0(n_0 z_0)=0$, yielding an explicit
 infinite resonant family. Finally, the normalized Lommel coefficients form a parity-adapted
 central-factorial basis in the squared order. This yields exact bounded-bandwidth
-reconstruction and a Pad\'e reduction of the bounded-bandwidth Pr\"ufer inversion problem.
-Moreover, every nonminimal bounded-bandwidth lift is forced onto an explicit codimension
-filtration of lower-degree boundary strata.
+reconstruction and a Pad\'e reduction of the normalized phase quotient. On the reduced side,
+the remaining ambiguity is organized by multiplier-incidence strata, while on the realized side
+the corresponding self-normalized quadratic phase map has an explicitly classified zero-phase
+fiber. The first bounded windows are governed by a universal top-order quadratic phase relation,
+whose first shadows are an exact conic ambiguity locus and a degree-$1$ saturation phenomenon.
 \end{abstract}
 
 \maketitle
@@ -156,13 +159,17 @@ exclude the anchored even-odd and odd-odd support-three sectors at second order,
 fifth order. Outside these anchored sectors, \Cref{thm:generic-finite-resonance} shows that the
 remaining multi-frequency infinite resonance locus is generically thin.
 
-The third output is finite-jet rigidity. \Cref{thm:central-factorial-basis} shows that the
+The third output is bounded-bandwidth phase geometry. \Cref{thm:central-factorial-basis} shows that the
 normalized Lommel coefficient polynomials form a parity-adapted central-factorial basis in the
 squared order. This yields the bounded-bandwidth reconstruction theorem
 \Cref{thm:bounded-bandwidth-reconstruction}. On every bounded even/odd bandwidth window,
-\Cref{prop:pade-reconstruction,prop:boundary-thinness} reduce the normalized Pr\"ufer inversion
-problem to a finite-dimensional amplitude-lifting problem and show that any nonminimal lift is
-forced onto an explicit lower-degree boundary filtration.
+\Cref{prop:pade-reconstruction,thm:incidence-geometry,prop:boundary-thinness} reduce the
+normalized Pr\"ufer inversion problem to finite-dimensional multiplier-incidence geometry, and
+\Cref{prop:zero-phase-fiber} identifies the exact universal zero-phase fiber of the realized
+self-normalized quadratic phase map. The first reduced-side windows can already be computed
+exactly: \Cref{prop:small-window-incidence} gives a circular degree-$1$ ambiguity locus on
+$(1,1)$ and full degree-$1$ saturation from $(1,1)$ into $(2,1)$, both governed by the same
+universal top-order quadric of \Cref{prop:top-order-quadric}.
 
 In the pure vertical specialization
 \[
@@ -212,7 +219,8 @@ uses that rigidity input to prove \Cref{thm:mobius-resonant}. Section~\ref{sec:f
 treats the pure vertical specialization. Section~\ref{sec:geometry} returns to the obstruction
 quotient and develops the support-two and support-three rigidity results together with the
 generic finite-resonance theorem. Section~\ref{sec:finite-jet} develops the central-factorial
-basis, bounded-bandwidth reconstruction, and the bounded-bandwidth Pad\'e/Pr\"ufer reduction.
+basis, bounded-bandwidth reconstruction, the reduced-side multiplier-incidence geometry, and the
+realized quadratic phase geometry on bounded windows.
 
 \section{Denominator-time normal form}\label{sec:normal-form}
 
@@ -1655,14 +1663,20 @@ For even normalized modes one has
 \widetilde J_\ell(t)
 =
 \begin{aligned}
-&\Bigl(1-\frac{\ell^2(\ell^2-4)}{8}u^2
-+\frac{\ell^2(\ell^2-4)^2(\ell^2-16)}{384}u^4+O(u^6)\Bigr)J_0(t)
+&\Bigl(
+1-\frac{\ell^2(\ell^2-4)}{8}u^2
++\frac{\ell^2(\ell^2-4)^2(\ell^2-16)}{384}u^4
++O(u^6)
+\Bigr)J_0(t)
 \\
-&\quad+\Bigl(
-\begin{aligned}[t]
-&-\frac{\ell^2}{2}u+\frac{\ell^2(\ell^2-4)^2}{48}u^3\\
-&\qquad -\frac{\ell^2(\ell^2-4)^2(\ell^2-16)^2}{3840}u^5+O(u^7)
-\end{aligned}
+&\quad+
+\Bigl(
+-\frac{\ell^2}{2}u
++\frac{\ell^2(\ell^2-4)^2}{48}u^3
+\\
+&\qquad\qquad
+-\frac{\ell^2(\ell^2-4)^2(\ell^2-16)^2}{3840}u^5
++O(u^7)
 \Bigr)J_1(t),
 \end{aligned}
 \]
@@ -2018,11 +2032,11 @@ anchored support-two and support-three rigidity results. In particular, once a $
 present, the entire support-three picture is now closed.
 \end{remark}
 
-\section{Finite-Jet Rigidity on Bounded Bandwidth Windows}\label{sec:finite-jet}
+\section{Finite-Jet and Phase Geometry on Bounded Bandwidth Windows}\label{sec:finite-jet}
 
 The support-two and support-three results of \Cref{sec:geometry} are low-order shadows of a
-more systematic finite-jet picture. In this section we isolate the bounded-bandwidth mechanism
-behind that picture.
+more systematic bounded-bandwidth phase geometry. In this section we isolate the finite-jet and
+phase-geometric mechanism behind that picture.
 
 \subsection*{A central-factorial basis for the normalized Lommel coefficients}
 
@@ -2169,7 +2183,7 @@ then recursively $c_{L-1},\dots,c_0$. Together with the separated scalar $a_0$, 
 inverse to $\Phi_{K,L}$.
 \end{proof}
 
-\subsection*{Pad\'e reduction and generic-shell injectivity}
+\subsection*{Pad\'e reduction and multiplier-incidence geometry}
 
 For $F\in\mathcal V_{K,L}$, set
 \[
@@ -2211,6 +2225,260 @@ Q(0)=1,
 The identity $Q(u)R_F(u)-P(u)=0$ modulo $u^{d_A+d_B+2}$ gives the standard square Pad\'e
 reconstruction system in the coefficients of $P$ and $Q$, so sufficiently many coefficients of
 $R_F$ determine the rational quotient uniquely.
+\end{proof}
+
+\begin{theorem}\label{thm:incidence-geometry}
+Fix a bounded bandwidth window $(K,L)$ and an integer $s\ge 1$. Let
+\[
+R(u)=\frac{\widehat S(u)}{\widehat C(u)}
+\]
+be a normalized rational phase quotient, where $(\widehat C,\widehat S)$ is the unique reduced
+coprime representative with $\widehat C(0)=1$ and $\widehat S(0)=0$. Define
+\[
+\mathcal I_s(K,L)
+:=
+\left\{
+(\widehat C,\widehat S,h):
+\deg h=s,\ h(0)=1,\ h(\widehat C,\widehat S)\ \text{is realized in }\mathcal V_{K,L}
+\right\},
+\]
+and let
+\[
+\mathcal Y_s(K,L)
+\]
+be its projection to the reduced-pair coordinates.
+
+Then $\mathcal I_s(K,L)$ is a real-algebraic subset of a finite-dimensional affine coefficient
+space, and $\mathcal Y_s(K,L)$ is a constructible, hence semialgebraic, subset of the reduced
+phase-pair parameter space.
+\end{theorem}
+
+\begin{proof}
+For fixed $(K,L)$ and $s$, the reduced pair $(\widehat C,\widehat S)$ has bounded degrees
+\[
+\deg \widehat C\le d_A-s,
+\qquad
+\deg \widehat S\le d_B-s,
+\]
+since multiplication by a degree-$s$ polynomial must still fit inside the window bounds
+\[
+\deg C\le d_A,
+\qquad
+\deg S\le d_B.
+\]
+Choose coefficient coordinates for all such reduced pairs, together with coordinates for
+\[
+h(u)=1+h_1u+\cdots+h_su^s.
+\]
+The condition that $h(\widehat C,\widehat S)$ be realized in $\mathcal V_{K,L}$ is a finite
+system of linear constraints on the coefficients of the product pair, hence a finite polynomial
+system in the coefficients of $\widehat C,\widehat S$, and $h$. Coprimeness of
+$(\widehat C,\widehat S)$ is the nonvanishing of their resultant, hence a Zariski-open
+condition. Therefore $\mathcal I_s(K,L)$ is algebraic on the reduced locus, and its projection
+is constructible by elimination.
+\end{proof}
+
+\begin{proposition}\label{prop:top-order-quadric}
+Let $(C,S)$ be a realized normalized phase pair on a bounded bandwidth window, and let
+\[
+d:=\deg B
+\]
+be the top degree of the underlying $J_1$-channel. Write
+\[
+C(u)=\sum_{j=0}^{d} c_j u^j,
+\qquad
+S(u)=\sum_{j=1}^{d} s_j u^j.
+\]
+Then the top two coefficient levels satisfy the universal quadratic relation
+\[
+2(c_{d-1}s_d-s_{d-1}c_d)+c_d^2+s_d^2=0.
+\]
+Moreover, this relation is covariant under degree-$1$ multiplication: if
+\[
+\widetilde C=(1+tu)C,
+\qquad
+\widetilde S=(1+tu)S,
+\]
+then
+\[
+Q_{d+1}(\widetilde C,\widetilde S)=t^2 Q_d(C,S),
+\]
+where
+\[
+Q_r(U,V):=2(u_{r-1}v_r-v_{r-1}u_r)+u_r^2+v_r^2
+\]
+for
+\[
+U(u)=\sum u_j u^j,
+\qquad
+V(u)=\sum v_j u^j.
+\]
+\end{proposition}
+
+\begin{proof}
+Write the underlying realized pair as
+\[
+F(t)=A(u)J_0(t)+B(u)J_1(t),
+\qquad
+x:=A(0),\quad y:=B(0),\quad D:=x^2+y^2.
+\]
+If
+\[
+A(u)=a\,u^{d-1}+\cdots,
+\qquad
+B(u)=b\,u^d+b' u^{d-1}+\cdots,
+\]
+then
+\[
+c_d=\frac{yb}{D},
+\qquad
+s_d=\frac{xb}{D},
+\]
+\[
+c_{d-1}=\frac{xa+yb'}{D},
+\qquad
+s_{d-1}=\frac{xb'-ya}{D}.
+\]
+Therefore
+\[
+2(c_{d-1}s_d-s_{d-1}c_d)+c_d^2+s_d^2
+=
+\frac{2ab+b^2}{D}.
+\]
+In the parity-adapted normalized Lommel basis, the highest coefficients always satisfy
+\[
+2a+b=0,
+\]
+so the displayed expression vanishes.
+
+For the covariance statement, if
+\[
+\widetilde C=(1+tu)C,
+\qquad
+\widetilde S=(1+tu)S,
+\]
+then
+\[
+\widetilde c_{d+1}=t c_d,
+\qquad
+\widetilde s_{d+1}=t s_d,
+\]
+\[
+\widetilde c_d=c_d+t c_{d-1},
+\qquad
+\widetilde s_d=s_d+t s_{d-1}.
+\]
+Substituting these formulas into $Q_{d+1}$ gives
+\[
+Q_{d+1}(\widetilde C,\widetilde S)=t^2Q_d(C,S).
+\]
+\end{proof}
+
+\begin{proposition}\label{prop:small-window-incidence}
+The first reduced-side degree-$1$ ambiguity loci can be computed exactly.
+\begin{enumerate}[label=\emph{(\roman*)}]
+\item In the smallest window $(1,0)$, every reduced normalized phase pair has the form
+\[
+\widehat C(u)=1+pu,
+\qquad
+\widehat S(u)=qu,
+\qquad
+p,q\in\R.
+\]
+Such a pair admits a nontrivial degree-$1$ lift into the window $(1,1)$ if and only if
+\[
+p^2+(q+1)^2=1.
+\]
+\item Every reduced normalized pair realized in the window $(1,1)$ admits a nontrivial
+degree-$1$ lift into the window $(2,1)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+For the window $(1,0)$, write
+\[
+F=aJ_0+b\widetilde J_2+c\widetilde J_1,
+\qquad
+\widetilde J_2=J_0-2uJ_1.
+\]
+Then
+\[
+A=a+b,
+\qquad
+B=c-2bu.
+\]
+With
+\[
+x:=A(0)=a+b,
+\qquad
+y:=B(0)=c,
+\qquad
+D:=x^2+y^2,
+\]
+the normalized pair is
+\[
+C(u)=1-\frac{2by}{D}u,
+\qquad
+S(u)=-\frac{2bx}{D}u.
+\]
+Hence every pair `(1+pu,qu)` is realized by choosing
+\[
+x=q,\qquad y=p,\qquad b=-\frac{p^2+q^2}{2},\qquad a=x-b,\qquad c=y.
+\]
+
+Now multiply a reduced pair from $(1,0)$ by
+\[
+h(u)=1+tu,
+\qquad
+t\neq 0.
+\]
+The lifted coefficients are
+\[
+C(u)=1+(p+t)u+pt\,u^2,
+\qquad
+S(u)=qu+qt\,u^2.
+\]
+On the window $(1,1)$, \Cref{prop:top-order-quadric} gives exactly the top-order relation
+\[
+2(c_1s_2-s_1c_2)+c_2^2+s_2^2=0.
+\]
+Substituting
+\[
+c_1=p+t,\qquad c_2=pt,\qquad s_1=q,\qquad s_2=qt
+\]
+gives
+\[
+t^2\bigl(p^2+(q+1)^2-1\bigr)=0,
+\]
+which proves part~\emph{(i)}.
+
+For part~\emph{(ii)}, a normalized pair realized in $(1,1)$ has the form
+\[
+\widehat C(u)=1+c_1u+c_2u^2,
+\qquad
+\widehat S(u)=s_1u+s_2u^2,
+\]
+with
+\[
+2(c_1s_2-s_1c_2)+c_2^2+s_2^2=0.
+\]
+After multiplication by `1+tu`, the lifted pair becomes
+\[
+C(u)=1+(c_1+t)u+(c_2+tc_1)u^2+tc_2\,u^3,
+\]
+\[
+S(u)=s_1u+(s_2+ts_1)u^2+ts_2\,u^3.
+\]
+On the window $(2,1)$, \Cref{prop:top-order-quadric} gives
+\[
+2(c_2s_3-s_2c_3)+c_3^2+s_3^2=0.
+\]
+Substituting the lifted coefficients yields
+\[
+t^2\bigl(2(c_1s_2-s_1c_2)+c_2^2+s_2^2\bigr)=0,
+\]
+which vanishes identically because the original pair lies in the $(1,1)$ quadric. Hence every
+reduced normalized pair from $(1,1)$ admits a degree-$1$ lift into $(2,1)$.
 \end{proof}
 
 \begin{proposition}\label{prop:boundary-thinness}
@@ -2260,14 +2528,82 @@ $0\le r\le s-1$. Since the top coefficients of $S_F$ agree with those of $\wideh
 the multiplier, this gives the claimed vanishing.
 \end{proof}
 
+\subsection*{The realized quadratic phase map}
+
+The realized-side normalized phase geometry is not linear. For
+\[
+x=(A,B)\in\mathcal V_{K,L},
+\]
+write
+\[
+a:=A(0),
+\qquad
+b:=B(0),
+\qquad
+z_0:=a+ib.
+\]
+Then the normalized phase pair is
+\[
+C_x(u)+iS_x(u):=\frac{A(u)+iB(u)}{a+ib},
+\]
+so
+\[
+C_x(u)=\frac{aA(u)+bB(u)}{a^2+b^2},
+\qquad
+S_x(u)=\frac{aB(u)-bA(u)}{a^2+b^2}.
+\]
+Accordingly, the realized normalized phase quotient is
+\[
+R_x(u)=\frac{Q_x(u)}{P_x(u)},
+\qquad
+P_x(u):=aA(u)+bB(u),
+\qquad
+Q_x(u):=aB(u)-bA(u).
+\]
+This is a self-normalized quadratic phase map in the realized coordinates.
+
+\begin{proposition}\label{prop:zero-phase-fiber}
+For every bounded bandwidth window $(K,L)$, the zero-phase fiber of the realized quadratic phase
+map is exactly
+\[
+\Psi_{K,L}^{-1}(0)
+=
+\PP\langle J_0,J_1\rangle
+\cup
+\PP\langle J_1,\widetilde J_2-J_0\rangle.
+\]
+\end{proposition}
+
+\begin{proof}
+If $R_x\equiv 0$, then $Q_x\equiv 0$. If $A(0)\neq 0$, this forces
+\[
+B=\lambda A
+\]
+for some real $\lambda$. The highest-degree triangular terms in the parity-adapted Lommel basis
+then eliminate every mode except the constant $J_0$ direction and the constant $J_1$ direction,
+so $x\in \PP\langle J_0,J_1\rangle$.
+
+If instead $A(0)=0$, then admissibility implies $B(0)\neq 0$, and $Q_x\equiv 0$ forces
+\[
+A\equiv 0.
+\]
+The $A$-channel triangular reconstruction then leaves only the span of $J_1$ and
+$\widetilde J_2-J_0$, which gives the second projective line. Both lines are contained in the
+fiber by direct substitution.
+\end{proof}
+
 \begin{remark}
 The bounded-bandwidth inverse problem is therefore no longer a family-by-family elimination
 problem. After \Cref{thm:central-factorial-basis,thm:bounded-bandwidth-reconstruction}, the raw
 coefficient geometry is globally triangular, and after \Cref{prop:pade-reconstruction}, the
-phase quotient is determined by a finite normalized Pr\"ufer jet. What remains is an
-amplitude-lifting problem, and \Cref{prop:boundary-thinness} shows that every nonminimal lift is
-forced onto a successively thinner top-coefficient boundary stratum. Thus the residual
-bounded-bandwidth fibers are stratified by codimension.
+phase quotient is determined by a finite normalized Pr\"ufer jet. On the reduced side, what
+remains is multiplier-incidence geometry, and \Cref{prop:boundary-thinness} shows that every
+realized nonminimal lift is forced onto a successively thinner top-coefficient boundary stratum.
+On the realized side, the first global fiber is already explicit:
+\Cref{prop:zero-phase-fiber} shows that the zero-phase fiber is the union of two canonical
+projective lines. Thus the bounded-bandwidth frontier has two complementary parts: a
+constructible incidence problem for reduced pairs, and a quadratic fiber geometry for realized
+pairs.
 \end{remark}
 
 \appendix

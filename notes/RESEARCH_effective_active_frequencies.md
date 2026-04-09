@@ -323,16 +323,115 @@ top-coefficient boundary stratum. So bounded-bandwidth nonuniqueness, if it occu
 stratified by an explicit boundary filtration and becomes thinner with the degree of the
 ambiguity.
 
-There is now a deeper reformulation in
-[RESEARCH_boundary_strata_subresultant_geometry.md](/Users/shunhu/Documents/Codes/Lean/RESEARCH_boundary_strata_subresultant_geometry.md).
-Nonunique amplitude lifting is exactly the common-factor locus of the normalized phase pair
-`(C_F,S_F)`. Hence the residual bounded-bandwidth fibers are controlled by the resultant and its
-subresultants:
+There is now a deeper correction and reformulation. The note
+[RESEARCH_boundary_strata_subresultant_geometry.md](/Users/shunhu/Documents/Codes/Lean/RESEARCH_boundary_strata_subresultant_geometry.md)
+should be read as the geometry of **realized nonminimal lifts**, not of the full nonuniqueness
+locus of phase quotients. At that realized-lift level, the residual bounded-bandwidth fibers are
+still controlled by the resultant and its subresultants:
 \[
 \mathfrak X_1\supset \mathfrak X_2\supset\cdots,
 \]
-where `\mathfrak X_s` is the degree-`\ge s` gcd stratum. This upgrades the boundary problem from
-“top coefficients vanish” to a canonical real-algebraic gcd stratification problem.
+where `\mathfrak X_s` is the degree-`\ge s` gcd stratum.
+
+The exact object is now recorded in
+[RESEARCH_multiplier_incidence_geometry.md](/Users/shunhu/Documents/Codes/Lean/notes/RESEARCH_multiplier_incidence_geometry.md).
+For a reduced normalized phase pair `\widehat Z`, one defines the multiplier set
+`\mathcal M_{K,L}(\widehat Z)`, and the true ambiguity loci are the incidence strata
+`\mathcal Y_s(K,L)` consisting of reduced pairs admitting a degree-`s` multiplier. The gcd
+strata `\mathfrak X_s` are only the images of these incidence strata under the realized-lift
+map.
+
+That note also shows that for each fixed degree `s`, the incidence set `\mathcal I_s(K,L)` is
+already a finite-dimensional real-algebraic set, and the ambiguity locus `\mathcal Y_s(K,L)` is
+constructible by elimination. So the bounded-bandwidth frontier has now been reduced to a
+standard finite-dimensional algebraic classification problem.
+
+The first exact reduced-side classification is now available in
+[RESEARCH_reduced_pair_degree1_small_windows.md](/Users/shunhu/Documents/Codes/Lean/notes/RESEARCH_reduced_pair_degree1_small_windows.md):
+
+- on the smallest window `(1,0)`, every reduced normalized pair has the form
+  \[
+  (1+pu,qu),
+  \]
+  so the reduced-pair space is the full affine plane;
+- on the next window `(1,1)`, the realized normalized-pair image is exactly a quadric;
+- degree-`1` ambiguity from `(1,0)` to `(1,1)` is then cut out by the circle
+  \[
+  p^2+(q+1)^2=1.
+  \]
+
+So multiplier-incidence geometry is not merely thin in the smallest windows; it already carries
+an explicit projective conic geometry at the first nontrivial level.
+
+The next window changes character again. In
+[RESEARCH_degree1_incidence_window_21.md](/Users/shunhu/Documents/Codes/Lean/notes/RESEARCH_degree1_incidence_window_21.md)
+the normalized-pair image of `(2,1)` is computed exactly and is itself cut out by a single
+quadric. Degree-`1` multiplication by `1+tu` sends every reduced pair from `(1,1)` into this
+quadric, so
+\[
+\mathcal Y_1(2,1)
+\]
+is the entire reduced normalized-pair image of `(1,1)`.
+
+So the first multiplier-incidence picture is already window-dependent in a strong way:
+
+- `(1,1)` produces a conic ambiguity locus;
+- `(2,1)` produces full degree-`1` incidence saturation.
+
+These two phenomena are now unified by
+[RESEARCH_universal_top_order_quadric.md](/Users/shunhu/Documents/Codes/Lean/notes/RESEARCH_universal_top_order_quadric.md).
+Every realized normalized pair on every bounded window satisfies the same top-order quadratic
+relation
+\[
+2(c_{d-1}s_d-s_{d-1}c_d)+c_d^2+s_d^2=0,
+\]
+and this relation is covariant under multiplication by `1+tu`. So the conic on `(1,1)` and the
+saturation on `(2,1)` are the first two manifestations of a universal highest-order phase
+constraint.
+
+So the bounded-bandwidth frontier has now been sharpened from
+“top coefficients vanish” to
+“classify the multiplier-incidence strata of reduced phase pairs, with gcd/subresultant strata as
+their algebraic shadows.”
+
+The realized-side picture has now been corrected in
+[RESEARCH_realized_quadratic_prufer_map.md](/Users/shunhu/Documents/Codes/Lean/notes/RESEARCH_realized_quadratic_prufer_map.md).
+The exact realized map is the self-normalized quadratic map
+\[
+[x]\longmapsto [P_x:Q_x],
+\qquad
+P_x=A(0)A+B(0)B,\quad Q_x=A(0)B-B(0)A.
+\]
+So realized fiber geometry is not a raw determinantal problem.
+
+What is now proved on the realized side is:
+
+- the full zero-phase fiber is universal and exactly classified:
+  \[
+  \Psi_{K,L}^{-1}(0)
+  =
+  \mathbb P\langle J_0,J_1\rangle
+  \cup
+  \mathbb P\langle J_1,\widetilde J_2-J_0\rangle;
+  \]
+- along the constant-phase component `\mathbb P\langle J_0,J_1\rangle`, the quadratic Prüfer map
+  is transversely rigid, with kernel exactly the obvious tangent directions
+  `\operatorname{span}\{J_0,J_1\}`.
+
+This exact zero-fiber classification is recorded in
+[RESEARCH_zero_phase_fiber_classification.md](/Users/shunhu/Documents/Codes/Lean/notes/RESEARCH_zero_phase_fiber_classification.md).
+
+Thus the realized-side frontier has changed shape:
+
+- not “generic realized uniqueness everywhere”;
+- but “a completely classified reducible zero-phase fiber, together with transverse rigidity along
+  its constant-phase component”.
+
+The older notes
+[RESEARCH_projective_determinantal_fibers.md](/Users/shunhu/Documents/Codes/Lean/notes/RESEARCH_projective_determinantal_fibers.md)
+and
+[RESEARCH_generic_realized_uniqueness_bounded_windows.md](/Users/shunhu/Documents/Codes/Lean/notes/RESEARCH_generic_realized_uniqueness_bounded_windows.md)
+should now be read only as superseded heuristics that led to this corrected quadratic picture.
 
 The unresolved problem is no longer “understand multi-frequency resonance” in general. It is:
 
@@ -345,14 +444,14 @@ That is a real reduction of the problem, not a change of language.
 
 ## Next step
 
-The next serious target is now twofold.
+The next serious target is now:
 
-1. Decide whether the remaining thin non-synchronized bad loci are actually nonempty.
-2. Push the new moment-normal-form picture beyond third order, especially into support `\ge 4`.
-3. Understand whether the finite jet maps `\mathfrak m_L` are locally injective on natural
+1. decide whether the multiplier-incidence strata `\mathcal Y_s(K,L)` are actually nonempty;
+2. if they are nonempty, determine whether they are still forced into thinner residual boundary
+   loci;
+3. push the moment-normal-form picture beyond third order, especially into support `\ge 4`;
+4. understand whether the finite jet maps `\mathfrak m_L` are locally injective on natural
    anchored regions.
-4. Push the central-factorial theorem from fixed-support discreteness to stronger local or
-   global injectivity statements for the finite jet maps on natural anchored regions.
 
 A strong next theorem would be:
 

@@ -1,4 +1,4 @@
-# Subresultant Geometry of the Bounded-Bandwidth Amplitude-Lifting Problem
+# Subresultant Geometry of Realized Nonminimal Lifts in the Bounded-Bandwidth Problem
 
 ## Goal
 
@@ -10,13 +10,13 @@ The previous boundary-thinness note showed:
 That is a useful one-sided consequence, but it still treats the boundary fiber indirectly. The
 more conceptual object is the common factor of the normalized phase pair itself.
 
-This note records the correct reformulation:
+This note records a useful but more limited reformulation:
 
-> nonunique amplitude lifting is exactly the common-factor locus of the normalized phase pair,
-> hence is controlled by resultants and subresultants.
+> if a *realized lift* is already nonminimal, then its common factor is controlled by
+> resultants and subresultants.
 
-So the bounded-bandwidth frontier is not merely a vague lower-degree boundary problem. It is a
-real-algebraic gcd stratification problem.
+This is not yet the full nonuniqueness locus of the phase quotient itself. It only captures the
+geometry of realized lifts which already carry a nontrivial common factor.
 
 ## 1. Normalized phase pairs
 
@@ -57,7 +57,7 @@ Then
 \deg S_F\le d_B.
 \]
 
-## 2. Common factor = amplitude ambiguity
+## 2. Common factor = nonminimal realized lift
 
 The correct algebraic formulation is immediate.
 
@@ -80,8 +80,8 @@ Let `F,G\in\mathcal V_{K,L}`. The following are equivalent:
    S_G=h\,S_F.
    \]
 
-In particular, `F` admits a nontrivial second lift with the same normalized phase quotient if
-and only if `C_F` and `S_F` have a nonconstant common real factor.
+In particular, if `C_F` and `S_F` have a nonconstant common real factor, then `F` is a
+nonminimal realized lift of its normalized phase quotient.
 
 ### Proof
 
@@ -103,8 +103,11 @@ C_G=\frac{h_G}{h_F}C_F,\qquad S_G=\frac{h_G}{h_F}S_F.
 Because all polynomials are real and normalized at `0`, the quotient is again a real polynomial
 with value `1` at `0`, proving (3). The converse is obvious.
 
-The last statement is exactly the case `G\neq F`, which occurs if and only if `h` is
-nonconstant, i.e. if and only if `C_F` and `S_F` have a nonconstant common factor.
+The last statement only says that a realized lift with a nonconstant common factor is
+nonminimal. The converse for the *phase quotient* is more delicate: the same quotient may admit
+another lift even if a given representative `(C_F,S_F)` is already reduced. That requires a
+separate multiplier-incidence description and is not encoded by the gcd of a single realized
+pair.
 
 ## 3. Resultant and subresultant stratification
 
@@ -122,11 +125,12 @@ F\in\mathcal V_{K,L}:\deg\gcd(C_F,S_F)\ge s
 \right\}.
 \]
 
-Thus:
+Thus, for realized phase pairs:
 
 - `\mathfrak X_0=\mathcal V_{K,L}`;
-- `\mathfrak X_1` is the nonunique-lift locus;
-- higher `\mathfrak X_s` correspond to higher-degree amplitude ambiguities.
+- `\mathfrak X_1` is the locus of nonminimal realized lifts;
+- higher `\mathfrak X_s` correspond to realized lifts carrying a common factor of degree at
+  least `s`.
 
 ### Theorem 3.2
 
@@ -141,7 +145,7 @@ More precisely:
 2. more generally, `\mathfrak X_s` is cut out by the vanishing of the first `s` subresultants of
    `(C_F,S_F)`.
 
-Hence the residual bounded-bandwidth fibers admit a canonical algebraic filtration
+Hence the realized nonminimal lifts admit a canonical algebraic filtration
 \[
 \mathcal V_{K,L}\supset \mathfrak X_1\supset \mathfrak X_2\supset\cdots.
 \]
@@ -183,7 +187,7 @@ C_F=h\,\widehat C,\qquad S_F=h\,\widehat S
 for some real polynomial `h` of degree at least `s`. The boundary-thinness proposition then
 forces the top `s` coefficients of `S_F` to vanish.
 
-## 5. Generic thinness on bounded windows
+## 5. Generic thinness for realized nonminimal lifts
 
 The subresultant description gives the correct generic statement.
 
@@ -193,8 +197,9 @@ If the resultant
 \[
 \operatorname{Res}(C_F,S_F)
 \]
-is not identically zero on `\mathcal V_{K,L}`, then the nonunique-lift locus `\mathfrak X_1` is
-a proper real-algebraic subset. In particular, it is meagre and has Lebesgue measure zero.
+is not identically zero on `\mathcal V_{K,L}`, then the realized nonminimal-lift locus
+`\mathfrak X_1` is a proper real-algebraic subset. In particular, it is meagre and has Lebesgue
+measure zero.
 
 More generally, whenever the first `s` subresultants are not identically zero, `\mathfrak X_s`
 is contained in a proper real-algebraic subset of codimension at least one.
@@ -206,13 +211,17 @@ subset has empty interior and Lebesgue measure zero.
 
 ## 6. Research meaning
 
-This reformulation is the cleanest one so far.
+This reformulation is conceptually useful but no longer the final one.
 
-The bounded-bandwidth frontier is no longer:
+It correctly describes the geometry of *realized nonminimal lifts*, but it does not yet classify
+all phase quotients with more than one lift. For that one must study multiplier-incidence strata
+for reduced phase pairs.
+
+So the bounded-bandwidth frontier is no longer merely:
 
 > maybe the lower-degree boundary strata are messy.
 
-It is:
+At the level of realized lifts it is:
 
 > understand the real-algebraic gcd strata `\mathfrak X_s` cut out by the subresultants of the
 > normalized phase pair.
@@ -225,9 +234,14 @@ This has two advantages.
    - visible top-degree vanishing;
    - genuine common-factor geometry.
 
-So the next serious theorem is now:
+But the next serious theorem should upgrade this from gcd geometry of realized lifts to the full
+multiplier-incidence geometry of reduced phase pairs.
+
+So one natural next step is:
 
 > show that the first resultant is not identically zero on a given bounded-bandwidth window, or
-> more ambitiously classify the subresultant strata `\mathfrak X_s`.
+> more ambitiously classify the subresultant strata `\mathfrak X_s` as shadows of the true
+> multiplier-incidence strata.
 
-That is the right out-of-the-box formulation of the lower-degree boundary problem.
+That is a useful algebraic shadow of the lower-degree boundary problem, but not yet the final
+moduli-theoretic formulation.
